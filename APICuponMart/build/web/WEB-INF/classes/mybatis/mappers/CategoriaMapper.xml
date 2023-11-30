@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="categoria">
+  <select id="obtenerCategoriasDisponibles" resultType="modelo.pojo.Categoria" parameterType="modelo.pojo.Categoria">
+        SELECT DISTINCT c.nombreCategoria, c.idCategoria
+        FROM smartcupon.empresa e
+        JOIN smartcupon.promocion p ON e.RFC = p.empresaRFC
+        JOIN smartcupon.categoria c ON p.idCategoria = c.idCategoria
+        WHERE p.idEstatus = 1; 
+    </select>
+</mapper>
+

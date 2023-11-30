@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="empresa">
+    <insert id="agregarEmpresa" parameterType="modelo.pojo.Empresa">
+        INSERT INTO Empresa (nombre, nombreComercial, representanteLegal, email, telefono, paginaWeb, RFC, estatusID)
+        VALUES (#{nombre}, #{nombreComercial}, #{representanteLegal}, #{email}, #{telefono}, #{paginaWeb}, #{RFC}, #{estatusID})
+    </insert>
+    <update id="editarEmpresa" parameterType="modelo.pojo.Empresa">
+        UPDATE Empresa
+        SET nombre = #{nombre},
+        nombreComercial = #{nombreComercial},
+        representanteLegal = #{representanteLegal},
+        email = #{email},
+        telefono = #{telefono},
+        paginaWeb = #{paginaWeb},
+        estatusID = #{estatusID}
+        WHERE RFC = #{RFC}
+    </update>
+    <delete id="eliminarEmpresa" parameterType="String">
+        DELETE FROM Empresa
+        WHERE RFC = #{RFC}
+    </delete>
+    <select id="buscarEmpresa" resultType="modelo.pojo.Empresa" parameterType="String">
+        SELECT *
+        FROM Empresa
+        WHERE nombre LIKE CONCAT('%', #{param}, '%')
+        OR RFC LIKE CONCAT('%', #{param}, '%')
+        OR representanteLegal LIKE CONCAT('%', #{param}, '%')
+    </select>
+    <select id="contarSucursalesAsociadas" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM Sucursal
+        WHERE empresaRFC = #{RFC}
+    </select>
+    <update id="subirLogo" parameterType="modelo.pojo.Empresa">
+        UPDATE empresa
+        SET logo = #{logo} 
+        WHERE RFC = #{RFC}
+    </update>
+    <select id="obtenerLogo" parameterType="String" resultType="modelo.pojo.Empresa">
+        SELECT RFC, TO_BASE64(logo) AS 'logoBase64'
+        FROM empresa WHERE RFC = #{RFC}
+    </select>
+
+</mapper>

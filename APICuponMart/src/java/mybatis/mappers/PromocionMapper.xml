@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="promocion">
+    <insert id="agregarPromocion" parameterType="modelo.pojo.Promocion">
+        INSERT INTO Promocion (nombrePromocion, descripcion, fechaInicio, fechaTermino, restricciones, idTipoPromocion, porcentajeDescuento, codigoPromocion, empresaRFC)
+        VALUES (#{nombrePromocion}, #{descripcion}, #{fechaInicio}, #{fechaTermino}, #{restricciones}, #{idTipoPromocion}, #{porcentajeDescuento}, #{codigoPromocion}, #{empresaRFC})
+    </insert>
+    <update id="editarPromocion" parameterType="modelo.pojo.Promocion">
+        UPDATE Promocion
+        SET nombrePromocion = #{nombrePromocion},
+        descripcion = #{descripcion},
+        fechaInicio = #{fechaInicio},
+        fechaTermino = #{fechaTermino},
+        restricciones = #{restricciones},
+        tipoPromocionID = #{tipoPromocionID}, 
+        porcentajeDescuento = #{porcentajeDescuento},
+        codigoPromocion = #{codigoPromocion},
+        empresaRFC = #{empresaRFC}
+        WHERE idPromocion = #{idPromocion}
+    </update>
+    <delete id="eliminarPromocion" parameterType="Integer">
+        DELETE FROM Promocion
+        WHERE idPromocion = #{idPromocion}
+    </delete>
+    <select id="buscarPromociones" resultType="modelo.pojo.Promocion" parameterType="modelo.pojo.Promocion">
+        SELECT *
+        FROM Promocion
+        WHERE (empresaRFC = #{empresaRFC} OR #{empresaRFC} IS NULL)
+        AND (fechaTermino >= #{fechaVencimiento} OR #{fechaVencimiento} IS NULL)
+    </select>
+    <update id="cambiarEstadoPromocion" parameterType="map">
+        UPDATE Promocion SET estatusID = #{nuevoEstatusID} WHERE idPromocion = #{idPromocion}
+    </update>   
+    <update id="subirImagen" parameterType="modelo.pojo.Promocion">
+        UPDATE promocion
+        SET imagen = #{imagen} 
+        WHERE idPromocion = #{idPromocion}
+    </update>
+    <select id="obtenerImagen" parameterType="int" resultType="modelo.pojo.Promocion">
+        SELECT TO_BASE64(imagen) AS 'imagenBase64'
+        FROM promocion
+        WHERE idPromocion = #{idPromocion}
+    </select>
+
+</mapper>

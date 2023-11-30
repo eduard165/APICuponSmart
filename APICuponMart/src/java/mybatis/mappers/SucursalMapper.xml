@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sucursal">
+    <insert id="agregarSucursal" parameterType="modelo.pojo.Sucursal">
+        INSERT INTO Sucursal (nombre, telefono, latitud, longitud, nombreEncargado, empresaRFC)
+        VALUES (#{nombre}, #{telefono}, #{latitud}, #{longitud}, #{nombreEncargado}, #{empresaRFC})
+    </insert>
+    <update id="editarSucursal" parameterType="modelo.pojo.Sucursal">
+        UPDATE Sucursal
+        SET nombre = #{nombre},
+        telefono = #{telefono},
+        latitud = #{latitud},
+        longitud = #{longitud},
+        nombreEncargado = #{nombreEncargado}
+        WHERE idSucursal = #{idSucursal}
+    </update>
+    <delete id="eliminarSucursal" parameterType="Int">
+        DELETE 
+        FROM Sucursal
+        WHERE idSucursal = #{idSucursal}
+    </delete>
+    <select id="buscarSucursal" parameterType="String" resultType="modelo.pojo.Sucursal">
+        SELECT DISTINCT s.*
+        FROM sucursal s
+        INNER JOIN direccion d ON s.idSucursal = d.idSucursal
+        WHERE s.nombre LIKE CONCAT('%', #{param}, '%')
+        OR d.calle LIKE CONCAT('%', #{param}, '%')
+        OR d.numero LIKE CONCAT('%', #{param}, '%')
+        OR d.colonia LIKE CONCAT('%', #{param}, '%')
+    </select>
+
+    <select id="contarPromocionesAsociadas" resultType="int" parameterType="int">
+        SELECT COUNT(*) 
+        FROM Sucursal_Promocion
+        WHERE sucursalID = #{idSucursal}
+    </select>
+</mapper>

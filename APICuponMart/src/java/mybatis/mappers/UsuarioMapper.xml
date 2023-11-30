@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="usuario">
+
+    <insert id="agregarUsuarioComercial" parameterType="modelo.pojo.Usuario">
+        INSERT INTO Usuario (nombre, apellidoPaterno, apellidoMaterno, CURP, correoElectronico, username, password, rol, empresaRFC)
+        VALUES (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{CURP}, #{correoElectronico}, #{username}, #{password}, 0, #{empresaRFC})
+    </insert>
+    
+    <insert id="agregarUsuarioGeneral" parameterType="modelo.pojo.Usuario">
+        INSERT INTO Usuario (nombre, apellidoPaterno, apellidoMaterno, CURP, correoElectronico, username, password, rol)
+        VALUES (#{nombre}, #{apellidoPaterno}, #{apellidoMaterno}, #{CURP}, #{correoElectronico}, #{username}, #{password}, 1)
+    </insert>
+    
+    <update id="editarUsuarioComercial" parameterType="modelo.pojo.Usuario">
+        UPDATE Usuario
+        SET nombre = #{nombre},
+        apellidoPaterno = #{apellidoPaterno},
+        apellidoMaterno = #{apellidoMaterno},
+        correoElectronico = #{correoElectronico},
+        password = #{password},
+        empresaRFC = #{empresaRFC}
+        WHERE idUsuario = #{idUsuario}
+    </update>
+
+    <update id="editarUsuarioGeneral" parameterType="modelo.pojo.Usuario">
+        UPDATE Usuario
+        SET nombre = #{nombre},
+        apellidoPaterno = #{apellidoPaterno},
+        apellidoMaterno = #{apellidoMaterno},
+        correoElectronico = #{correoElectronico},
+        password = #{password}
+        WHERE idUsuario = #{idUsuario}
+    </update>
+
+    <delete id="eliminarUsuario" parameterType="Integer">
+        DELETE FROM Usuario
+        WHERE idUsuario = #{idUsuario}
+    </delete>
+
+    <select id="buscarUsuario" resultType="modelo.pojo.Usuario" parameterType="String">
+        SELECT *
+        FROM Usuario
+        WHERE nombre LIKE CONCAT('%', #{param}, '%')
+        OR username LIKE CONCAT('%', #{param}, '%')
+        OR rolID LIKE CONCAT('%', #{param}, '%')
+    </select>
+    <select id="contarUsername" resultType="Integer" parameterType="String">
+        SELECT COUNT(*) 
+        FROM Usuario
+        WHERE username = #{username}
+    </select>
+    <select id="contarCurp" resultType="Integer" parameterType="String">
+        SELECT COUNT(*) 
+        FROM Usuario
+        WHERE CURP = #{CURP}
+    </select>
+
+</mapper>
