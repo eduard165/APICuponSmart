@@ -101,9 +101,9 @@ public class DireccionWS {
     @Path("/eliminar/sucursal/{idSucursal}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje eliminarDireccionSucursal(@PathParam("empresaRFC") String empresaRFC) {
-        if (empresaRFC != null && !empresaRFC.isEmpty()) {
-            return DireccionDAO.eliminarDireccionEmpresa(empresaRFC);
+    public Mensaje eliminarDireccionSucursal(@PathParam("idSucursal") Integer idSucursal) {
+        if (idSucursal != null && idSucursal > 0 ) {
+            return DireccionDAO.eliminarDireccionSucursal(idSucursal);
         } else {
             return new Mensaje(true, "Campo vacío");
         }

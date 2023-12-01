@@ -79,7 +79,7 @@ public class Validaciones {
     }
 
     public static Integer validarTipoDireccion(Direccion direccion) {
-        if (direccion.getEmpresaRFC() != null) {
+        if (direccion.getEmpresaRFC() != null ) {
             return 1;
         } else if (direccion.getIdCliente() != null) {
             return 2;

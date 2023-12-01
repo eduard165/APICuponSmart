@@ -206,7 +206,6 @@ public class UsuarioDAO {
     }
 
     public static Mensaje validarDuplicados(String username, String curp) {
-        
         Mensaje msj = new Mensaje();
         msj.setError(true);
         
