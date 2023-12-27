@@ -13,7 +13,7 @@ public class DireccionDAO {
         Mensaje msj = new Mensaje();
         msj.setError(true);
 
-        switch (Validaciones.validarTipoDireccion(direccion)) {
+        switch (direccion.getTipo_direccion()) {
             case 1:
                 msj = registrarDireccionEmpresa(direccion);
                 break;
@@ -33,7 +33,7 @@ public class DireccionDAO {
         Mensaje msj = new Mensaje();
         msj.setError(true);
         
-        switch (Validaciones.validarTipoDireccion(direccion)) {
+        switch (direccion.getTipo_direccion()) {
             case 1:
                 msj = editarDireccionEmpresa(direccion);
                 break;

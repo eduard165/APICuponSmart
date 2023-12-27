@@ -4,16 +4,16 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="cupon">
-    <select id="listarCuponesDisponibles" resultType="modelo.pojo.Cupon">
-        SELECT cp.idCupon, cp.codigoCupon, cp.promocionID, pr.nombrePromocion, pr.fechaTermino, pr.estatusID
-        FROM Cupon cp
-        JOIN Promocion pr ON cp.promocionID = pr.idPromocion
-        WHERE pr.fechaTermino >= NOW() AND pr.idEstatus = 1
+    <select id="listar_cupones_disponibles" resultType="modelo.pojo.Cupon">
+        SELECT cp.id_cupon, cp.codigo_cupon, cp.promocion_id, pr.nombre_promocion, pr.fecha_termino, pr.estatus_id
+        FROM cupon cp
+        JOIN promocion pr ON cp.promocion_id = pr.id_promocion
+        WHERE pr.fecha_termino >= NOW() AND pr.id_estatus = 1
     </select>
-    <select id="obtenerCuponesDisponibles" resultType="int" parameterType="String">
-        SELECT COUNT(*) FROM Cupon WHERE codigoCupon = #{codigoCupon}
+    <select id="obtener_cupones_disponibles" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM cupon WHERE codigo_cupon = #{codigoCupon}
     </select>
-    <update id="canjearCupon" parameterType="String">
-        UPDATE Cupon SET idEstatus = 2 WHERE codigoCupon = #{codigoCupon}
+    <update id="canjear_cupon" parameterType="String">
+        UPDATE cupon SET id_estatus = 2 WHERE codigo_cupon = #{codigoCupon}
     </update>
 </mapper>

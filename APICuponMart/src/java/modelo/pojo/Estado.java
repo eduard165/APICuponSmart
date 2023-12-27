@@ -10,23 +10,23 @@ package modelo.pojo;
  * @author eduar
  */
 public class Estado {
-    private Integer idEstado;
+    private Integer id_estado;
     private String nombre;
 
     public Estado() {
     }
 
-    public Estado(Integer idEstado, String nombre) {
-        this.idEstado = idEstado;
+    public Estado(Integer id_estado, String nombre) {
+        this.id_estado = id_estado;
         this.nombre = nombre;
     }
 
-    public Integer getIdEstado() {
-        return idEstado;
+    public Integer getId_estado() {
+        return id_estado;
     }
 
-    public void setIdEstado(Integer idEstado) {
-        this.idEstado = idEstado;
+    public void setId_estado(Integer id_estado) {
+        this.id_estado = id_estado;
     }
 
     public String getNombre() {
@@ -36,6 +36,4 @@ public class Estado {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
-    
-    
 }

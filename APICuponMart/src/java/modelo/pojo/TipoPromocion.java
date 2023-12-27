@@ -2,36 +2,32 @@
 package modelo.pojo;
 
 public class TipoPromocion {
-    private Integer idTipoPromocion;
-    private String nombreTipo;
+    private Integer id_tipo_promocion;
+    private String nombre_tipo;
 
     public TipoPromocion() {
     }
 
-    public TipoPromocion(Integer idTipoPromocion, String nombreTipo) {
-        this.idTipoPromocion = idTipoPromocion;
-        this.nombreTipo = nombreTipo;
+    public TipoPromocion(Integer id_tipo_promocion, String nombre_tipo) {
+        this.id_tipo_promocion = id_tipo_promocion;
+        this.nombre_tipo = nombre_tipo;
     }
 
-    public Integer getIdTipoPromocion() {
-        return idTipoPromocion;
+    public Integer getId_tipo_promocion() {
+        return id_tipo_promocion;
     }
 
-    public void setIdTipoPromocion(Integer idTipoPromocion) {
-        this.idTipoPromocion = idTipoPromocion;
+    public void setId_tipo_promocion(Integer id_tipo_promocion) {
+        this.id_tipo_promocion = id_tipo_promocion;
     }
 
-    public String getNombreTipo() {
-        return nombreTipo;
+    public String getNombre_tipo() {
+        return nombre_tipo;
     }
 
-    public void setNombreTipo(String nombreTipo) {
-        this.nombreTipo = nombreTipo;
+    public void setNombre_tipo(String nombre_tipo) {
+        this.nombre_tipo = nombre_tipo;
     }
-
-    @Override
-    public String toString() {
-        return "- "+ nombreTipo ;
-    }
+    
     
 }

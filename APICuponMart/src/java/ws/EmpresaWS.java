@@ -25,7 +25,7 @@ public class EmpresaWS {
     public EmpresaWS() {
     }
     
-    @Path("/agregarEmpresa")
+    @Path("/agregar")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -38,7 +38,7 @@ public class EmpresaWS {
         return EmpresaDAO.agregarEmpresa(empresa);
     }
 
-    @Path("/editarEmpresa")
+    @Path("/editar")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -51,7 +51,7 @@ public class EmpresaWS {
         return EmpresaDAO.editarEmpresa(empresa);
     }
 
-    @Path("/eliminarEmpresa/{empresaRFC}")
+    @Path("/eliminar/{empresaRFC}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje eliminarEmpresa(@PathParam("empresaRFC") String empresaRFC) {
@@ -62,7 +62,7 @@ public class EmpresaWS {
         }
     }
 
-    @Path("/buscarEmpresa/{parametro}")
+    @Path("/buscar/{parametro}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Empresa buscarEmpresa(@PathParam("parametro") String parametro) {

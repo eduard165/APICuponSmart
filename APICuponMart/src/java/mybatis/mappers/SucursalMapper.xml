@@ -4,37 +4,37 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="sucursal">
-    <insert id="agregarSucursal" parameterType="modelo.pojo.Sucursal">
-        INSERT INTO Sucursal (nombre, telefono, latitud, longitud, nombreEncargado, empresaRFC)
+    <insert id="agregar_sucursal" parameterType="modelo.pojo.Sucursal">
+        INSERT INTO sucursal (nombre, telefono, latitud, longitud, nombre_encargado, empresa_rfc)
         VALUES (#{nombre}, #{telefono}, #{latitud}, #{longitud}, #{nombreEncargado}, #{empresaRFC})
     </insert>
-    <update id="editarSucursal" parameterType="modelo.pojo.Sucursal">
-        UPDATE Sucursal
+    <update id="editar_sucursal" parameterType="modelo.pojo.Sucursal">
+        UPDATE sucursal
         SET nombre = #{nombre},
         telefono = #{telefono},
         latitud = #{latitud},
         longitud = #{longitud},
-        nombreEncargado = #{nombreEncargado}
-        WHERE idSucursal = #{idSucursal}
+        nombre_encargado = #{nombreEncargado}
+        WHERE id_sucursal = #{idSucursal}
     </update>
-    <delete id="eliminarSucursal" parameterType="Int">
+    <delete id="eliminar_sucursal" parameterType="int">
         DELETE 
-        FROM Sucursal
-        WHERE idSucursal = #{idSucursal}
+        FROM sucursal
+        WHERE id_sucursal = #{idSucursal}
     </delete>
-    <select id="buscarSucursal" parameterType="String" resultType="modelo.pojo.Sucursal">
+    <select id="buscar_sucursal" parameterType="String" resultType="modelo.pojo.Sucursal">
         SELECT DISTINCT s.*
         FROM sucursal s
-        INNER JOIN direccion d ON s.idSucursal = d.idSucursal
+        INNER JOIN direccion d ON s.id_sucursal = d.id_sucursal
         WHERE s.nombre LIKE CONCAT('%', #{param}, '%')
         OR d.calle LIKE CONCAT('%', #{param}, '%')
         OR d.numero LIKE CONCAT('%', #{param}, '%')
         OR d.colonia LIKE CONCAT('%', #{param}, '%')
     </select>
 
-    <select id="contarPromocionesAsociadas" resultType="int" parameterType="int">
+    <select id="contar_promociones_asociadas" resultType="int" parameterType="int">
         SELECT COUNT(*) 
-        FROM Sucursal_Promocion
-        WHERE sucursalID = #{idSucursal}
+        FROM sucursal_promocion
+        WHERE sucursal_id = #{idSucursal}
     </select>
 </mapper>

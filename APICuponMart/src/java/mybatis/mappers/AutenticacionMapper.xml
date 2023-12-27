@@ -5,15 +5,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="autenticacion">
     <select id="verificarCredencialesUsuario" resultType="modelo.pojo.Usuario" parameterType="modelo.pojo.Usuario">
-        SELECT idUsuario, nombre, apellidoPaterno, apellidoMaterno, CURP, correoElectronico, username, password, rolID, empresaRFC
+        SELECT id_usuario, nombre, apellido_paterno, apellido_materno, curp, correo_electronico, username, password, id_rol, empresa_rfc
         FROM usuario
         WHERE username = #{username} AND password = #{password}
     </select>
     
     <select id="verificarCredencialesCliente" resultType="modelo.pojo.Cliente" parameterType="modelo.pojo.Usuario">
-        SELECT idCliente, nombre, apellidoPaterno, apellidoMaterno, telefono, correoElectronico, fechaNacimiento, password
+        SELECT id_cliente, nombre, apellido_paterno, apellido_materno, telefono, correo_electronico, fecha_nacimiento, password
         FROM cliente
-        WHERE correoElectronico = #{correoElectronico} AND password = #{password}
+        WHERE correo_electronico = #{correo_electronico} AND password = #{password}
     </select>
 </mapper>
 

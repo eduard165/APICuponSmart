@@ -24,10 +24,10 @@ public class UsuarioDAO {
         msj.setError(true);
         validacionesDuplicados.setError(true);
         
-        validacionesDuplicados = validarDuplicados(usuario.getUsername(), usuario.getCURP());
+        validacionesDuplicados = validarDuplicados(usuario.getUsername(), usuario.getCurp());
         
         if (validacionesDuplicados.isError()) {
-            switch (usuario.getRolID()) {
+            switch (usuario.getId_rol()) {
                 case 0:
                     msj = editarUsuarioComercial(usuario);
                     break;
@@ -50,9 +50,9 @@ public class UsuarioDAO {
 
         msj.setError(true);
         validacionesDuplicados.setError(true);
-        validacionesDuplicados = validarDuplicados(usuario.getUsername(), usuario.getCURP());
+        validacionesDuplicados = validarDuplicados(usuario.getUsername(), usuario.getCurp());
         if (validacionesDuplicados.isError()) {
-            switch (usuario.getRolID()) {
+            switch (usuario.getId_rol()) {
                 case 0:
                     msj = registrarUsuarioComercial(usuario);
                     break;

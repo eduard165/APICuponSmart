@@ -2,39 +2,42 @@ package modelo.pojo;
 
 public class Usuario {
 
-    private Integer idUsuario;
+    private Integer id_usuario;
     private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
-    private String CURP;
-    private String correoElectronico;
+    private String apellido_paterno;
+    private String apellido_materno;
+    private String curp;
+    private String correo_electronico;
     private String username;
     private String password;
-    private Integer rolID;
-    private String empresaRFC; 
+    private Integer id_rol;
+    private String empresa_rfc; 
+    private Integer tipo_Usurio;
+          
 
     public Usuario() {
     }
 
-    public Usuario(Integer idUsuario, String nombre, String apellidoPaterno, String apellidoMaterno, String CURP, String correoElectronico, String username, String password, Integer rolID, String empresaRFC) {
-        this.idUsuario = idUsuario;
+    public Usuario(Integer id_usuario, String nombre, String apellido_paterno, String apellido_materno, String curp, String correo_electronico, String username, String password, Integer id_rol, String empresa_rfc, Integer tipo_Usurio) {
+        this.id_usuario = id_usuario;
         this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
-        this.CURP = CURP;
-        this.correoElectronico = correoElectronico;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
+        this.curp = curp;
+        this.correo_electronico = correo_electronico;
         this.username = username;
         this.password = password;
-        this.rolID = rolID;
-        this.empresaRFC = empresaRFC;
+        this.id_rol = id_rol;
+        this.empresa_rfc = empresa_rfc;
+        this.tipo_Usurio = tipo_Usurio;
     }
 
-    public Integer getIdUsuario() {
-        return idUsuario;
+    public Integer getId_usuario() {
+        return id_usuario;
     }
 
-    public void setIdUsuario(Integer idUsuario) {
-        this.idUsuario = idUsuario;
+    public void setId_usuario(Integer id_usuario) {
+        this.id_usuario = id_usuario;
     }
 
     public String getNombre() {
@@ -45,36 +48,36 @@ public class Usuario {
         this.nombre = nombre;
     }
 
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
+    public String getApellido_paterno() {
+        return apellido_paterno;
     }
 
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
+    public void setApellido_paterno(String apellido_paterno) {
+        this.apellido_paterno = apellido_paterno;
     }
 
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
+    public String getApellido_materno() {
+        return apellido_materno;
     }
 
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
+    public void setApellido_materno(String apellido_materno) {
+        this.apellido_materno = apellido_materno;
     }
 
-    public String getCURP() {
-        return CURP;
+    public String getCurp() {
+        return curp;
     }
 
-    public void setCURP(String CURP) {
-        this.CURP = CURP;
+    public void setCurp(String curp) {
+        this.curp = curp;
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
+    public String getCorreo_electronico() {
+        return correo_electronico;
     }
 
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
+    public void setCorreo_electronico(String correo_electronico) {
+        this.correo_electronico = correo_electronico;
     }
 
     public String getUsername() {
@@ -93,21 +96,28 @@ public class Usuario {
         this.password = password;
     }
 
-    public Integer getRolID() {
-        return rolID;
+    public Integer getId_rol() {
+        return id_rol;
     }
 
-    public void setRolID(Integer rolID) {
-        this.rolID = rolID;
+    public void setId_rol(Integer id_rol) {
+        this.id_rol = id_rol;
     }
 
-    public String getEmpresaRFC() {
-        return empresaRFC;
+    public String getEmpresa_rfc() {
+        return empresa_rfc;
     }
 
-    public void setEmpresaRFC(String empresaRFC) {
-        this.empresaRFC = empresaRFC;
+    public void setEmpresa_rfc(String empresa_rfc) {
+        this.empresa_rfc = empresa_rfc;
     }
 
+    public Integer getTipo_Usurio() {
+        return tipo_Usurio;
+    }
+
+    public void setTipo_Usurio(Integer tipo_Usurio) {
+        this.tipo_Usurio = tipo_Usurio;
+    }
     
 }

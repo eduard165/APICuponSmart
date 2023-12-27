@@ -28,7 +28,7 @@ import utilidades.Validaciones;
 public class AutenticacionWS {
     
     @POST
-    @Path("/validacionUsuario")
+    @Path("/validacion/usuario")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public RespuestaLoginUsuario verificarUsuario(String json) {
@@ -41,7 +41,7 @@ public class AutenticacionWS {
     }
     
     @POST
-    @Path("/validacionCliente")
+    @Path("/validacion/cliente")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public RespuestaLoginCliente verificarCliente(String json) {

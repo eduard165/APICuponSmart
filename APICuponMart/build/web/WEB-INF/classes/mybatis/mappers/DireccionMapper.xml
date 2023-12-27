@@ -4,19 +4,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="direccion">
-    <insert id="agregarDireccionPorCliente" parameterType="modelo.pojo.Direccion">
+    <insert id="agregar_direccion_por_cliente" parameterType="modelo.pojo.Direccion">
         INSERT INTO direccion (calle, numero, codigoPostal, colonia, idMunicipio, idCliente)
         VALUES (#{calle}, #{numero}, #{codigoPostal}, #{colonia}, #{idMunicipio}, #{idCliente})
     </insert>
-    <insert id="agregarDireccionPorEmpresa" parameterType="modelo.pojo.Direccion">
+    <insert id="agregar_direccion_por_empresa" parameterType="modelo.pojo.Direccion">
         INSERT INTO direccion (calle, numero, codigoPostal, colonia, idMunicipio, empresaRFC)
         VALUES (#{calle}, #{numero}, #{codigoPostal}, #{colonia}, #{idMunicipio}, #{empresaRFC})
     </insert>
-    <insert id="agregarDireccionPorSucursal" parameterType="modelo.pojo.Direccion">
+    <insert id="agregar_direccion_por_sucursal" parameterType="modelo.pojo.Direccion">
         INSERT INTO direccion (calle, numero, codigoPostal, colonia, idMunicipio, idSucursal)
         VALUES (#{calle}, #{numero}, #{codigoPostal}, #{colonia}, #{idMunicipio}, #{idSucursal})
     </insert>
-    <update id="editarDireccionPorCliente" parameterType="modelo.pojo.Direccion">
+    <update id="editar_direccion_por_cliente" parameterType="modelo.pojo.Direccion">
         UPDATE direccion
         SET calle = #{calle},
         numero = #{numero},
@@ -25,48 +25,48 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         idMunicipio = #{idMunicipio}
         WHERE idCliente = #{idCliente}
     </update>
-    <update id="editarDireccionPorEmpresa" parameterType="modelo.pojo.Direccion">
+    <update id="editar_direccion_por_empresa" parameterType="modelo.pojo.Direccion">
         UPDATE direccion
         SET calle = #{calle},
         numero = #{numero},
         codigoPostal = #{codigoPostal},
         colonia = #{colonia},
         idMunicipio = #{idMunicipio}
-        WHERE  empresaRFC = #{empresaRFC}
+        WHERE empresaRFC = #{empresaRFC}
     </update>
-    <update id="editarDireccionPorSucursal" parameterType="modelo.pojo.Direccion">
+    <update id="editar_direccion_por_sucursal" parameterType="modelo.pojo.Direccion">
         UPDATE direccion
         SET calle = #{calle},
         numero = #{numero},
         codigoPostal = #{codigoPostal},
         colonia = #{colonia},
         idMunicipio = #{idMunicipio}
-        WHERE  idSucursal = #{idSucursal}
+        WHERE idSucursal = #{idSucursal}
     </update>
-    <select id="obtenerDireccionPorCliente" resultType="modelo.pojo.Direccion" parameterType="Integer">
+    <select id="obtener_direccion_por_cliente" resultType="modelo.pojo.Direccion" parameterType="Integer">
         SELECT *
         FROM direccion
         WHERE idCliente = #{idCliente}
     </select>
-    <select id="obtenerDireccionPorEmpresa" resultType="modelo.pojo.Direccion" parameterType="String">
+    <select id="obtener_direccion_por_empresa" resultType="modelo.pojo.Direccion" parameterType="String">
         SELECT *
         FROM direccion
         WHERE empresaRFC = #{empresaRFC}
     </select>
-    <select id="obtenerDireccionPorSucursal" resultType="modelo.pojo.Direccion" parameterType="Integer">
+    <select id="obtener_direccion_por_sucursal" resultType="modelo.pojo.Direccion" parameterType="Integer">
         SELECT *
         FROM direccion
         WHERE idSucursal = #{idSucursal}
     </select>
-    <delete id="eliminarDireccionPorCliente" parameterType="Integer">
+    <delete id="eliminar_direccion_por_cliente" parameterType="Integer">
         DELETE FROM direccion
         WHERE idCliente = #{idCliente}
     </delete>
-    <delete id="eliminarDireccionPorEmpresa" parameterType="String">
+    <delete id="eliminar_direccion_por_empresa" parameterType="String">
         DELETE FROM direccion
         WHERE empresaRFC = #{empresaRFC}
     </delete>
-    <delete id="eliminarDireccionPorSucursal" parameterType="Integer">
+    <delete id="eliminar_direccion_por_sucursal" parameterType="Integer">
         DELETE FROM direccion
         WHERE idSucursal = #{idSucursal}
     </delete>

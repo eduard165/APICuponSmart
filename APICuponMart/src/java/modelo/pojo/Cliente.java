@@ -2,37 +2,35 @@ package modelo.pojo;
 
 public class Cliente {
 
-    private Integer idCliente;
+    private Integer id_cliente;
     private String nombre;
-    private String apellidoPaterno;
-    private String apellidoMaterno;
+    private String apellido_paterno;
+    private String apellido_materno;
     private String telefono;
-    private String correoElectronico;
-    private Integer direccionID;
-    private String fechaNacimiento;
+    private String correo_electronico;
+    private String fecha_nacimiento;
     private String password;
 
     public Cliente() {
     }
 
-    public Cliente(Integer idCliente, String nombre, String apellidoPaterno, String apellidoMaterno, String telefono, String correoElectronico, Integer direccionID, String fechaNacimiento, String password) {
-        this.idCliente = idCliente;
+    public Cliente(Integer id_cliente, String nombre, String apellido_paterno, String apellido_materno, String telefono, String correo_electronico, String fecha_nacimiento, String password) {
+        this.id_cliente = id_cliente;
         this.nombre = nombre;
-        this.apellidoPaterno = apellidoPaterno;
-        this.apellidoMaterno = apellidoMaterno;
+        this.apellido_paterno = apellido_paterno;
+        this.apellido_materno = apellido_materno;
         this.telefono = telefono;
-        this.correoElectronico = correoElectronico;
-        this.direccionID = direccionID;
-        this.fechaNacimiento = fechaNacimiento;
+        this.correo_electronico = correo_electronico;
+        this.fecha_nacimiento = fecha_nacimiento;
         this.password = password;
     }
 
-    public Integer getIdCliente() {
-        return idCliente;
+    public Integer getId_cliente() {
+        return id_cliente;
     }
 
-    public void setIdCliente(Integer idCliente) {
-        this.idCliente = idCliente;
+    public void setId_cliente(Integer id_cliente) {
+        this.id_cliente = id_cliente;
     }
 
     public String getNombre() {
@@ -43,20 +41,20 @@ public class Cliente {
         this.nombre = nombre;
     }
 
-    public String getApellidoPaterno() {
-        return apellidoPaterno;
+    public String getApellido_paterno() {
+        return apellido_paterno;
     }
 
-    public void setApellidoPaterno(String apellidoPaterno) {
-        this.apellidoPaterno = apellidoPaterno;
+    public void setApellido_paterno(String apellido_paterno) {
+        this.apellido_paterno = apellido_paterno;
     }
 
-    public String getApellidoMaterno() {
-        return apellidoMaterno;
+    public String getApellido_materno() {
+        return apellido_materno;
     }
 
-    public void setApellidoMaterno(String apellidoMaterno) {
-        this.apellidoMaterno = apellidoMaterno;
+    public void setApellido_materno(String apellido_materno) {
+        this.apellido_materno = apellido_materno;
     }
 
     public String getTelefono() {
@@ -67,28 +65,20 @@ public class Cliente {
         this.telefono = telefono;
     }
 
-    public String getCorreoElectronico() {
-        return correoElectronico;
+    public String getCorreo_electronico() {
+        return correo_electronico;
     }
 
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
+    public void setCorreo_electronico(String correo_electronico) {
+        this.correo_electronico = correo_electronico;
     }
 
-    public Integer getDireccionID() {
-        return direccionID;
+    public String getFecha_nacimiento() {
+        return fecha_nacimiento;
     }
 
-    public void setDireccionID(Integer direccionID) {
-        this.direccionID = direccionID;
-    }
-
-    public String getFechaNacimiento() {
-        return fechaNacimiento;
-    }
-
-    public void setFechaNacimiento(String fechaNacimiento) {
-        this.fechaNacimiento = fechaNacimiento;
+    public void setFecha_nacimiento(String fecha_nacimiento) {
+        this.fecha_nacimiento = fecha_nacimiento;
     }
 
     public String getPassword() {
@@ -98,12 +88,5 @@ public class Cliente {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    public Boolean todosAtributosLlenos() {
-        return siEsUncorreoValido() && this.password.isEmpty();
-    }
-
-    public Boolean siEsUncorreoValido() {
-        return this.correoElectronico.matches("^[A-Za-z0-9+_.-]+@[A-Za-z0-9.-]+\\.[A-Za-z]+$");
-    }
+    
 }

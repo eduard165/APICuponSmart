@@ -119,14 +119,14 @@ public class EmpresaDAO {
         return empresa;
     }
 
-    public static Mensaje subirLogoPorId(String RFC, byte[] logo) {
+    public static Mensaje subirLogoPorId(String rfc, byte[] logo) {
         Mensaje rest = new Mensaje();
         rest.setError(true);
         SqlSession conexionBD = MyBatisUtil.getSession();
         if (conexionBD != null) {
             try {
                 Empresa empresaLogo = new Empresa();
-                empresaLogo.setRFC(RFC);
+                empresaLogo.setRfc(rfc);
                 empresaLogo.setLogo(logo);
                 int filasAfectadas = conexionBD.update("empresa.subirLogo", empresaLogo);
                 conexionBD.commit();

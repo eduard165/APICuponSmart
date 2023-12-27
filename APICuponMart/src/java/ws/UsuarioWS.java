@@ -24,7 +24,7 @@ import utilidades.Validaciones;
     @Path("/usuarios")
 public class UsuarioWS {
 
-    @Path("/agregarUsuario")
+    @Path("/agregar")
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -34,10 +34,11 @@ public class UsuarioWS {
         if (Validaciones.validarUsuario(usuario)) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
+        System.out.print(usuario);
         return UsuarioDAO.registrarUsuario(usuario);
     }
 
-    @Path("/editarUsuario")
+    @Path("/editar")
     @PUT
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
@@ -51,7 +52,7 @@ public class UsuarioWS {
         return UsuarioDAO.editarUsuario(usuario);
     }
 
-    @Path("/eliminarUsuario/{idUsuario}")
+    @Path("/eliminar/{idUsuario}")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje eliminarUsuario(@PathParam("idUsuario") int idUsuario) {
@@ -61,7 +62,7 @@ public class UsuarioWS {
         return UsuarioDAO.eliminarUsuario(idUsuario);
     }
 
-    @Path("/buscarUsuario/{parametro}")
+    @Path("/buscar/{parametro}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Usuario buscarUsuario(@PathParam("parametro") String parametro) {

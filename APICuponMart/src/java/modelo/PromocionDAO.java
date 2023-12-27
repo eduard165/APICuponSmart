@@ -143,7 +143,7 @@ public static List<Promocion> buscarPromociones(String parametro) {
         if (conexionBD != null){
             try {
                 Promocion promocionFoto = new Promocion();
-                promocionFoto.setIdPromocion(idPromocion);
+                promocionFoto.setId_promocion(idPromocion);
                 promocionFoto.setImagen(foto);
                 int filasAfectadas = conexionBD.update("promocion.subirImagen", promocionFoto);
                 conexionBD.commit();

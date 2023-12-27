@@ -1,64 +1,63 @@
-
 package modelo.pojo;
 
 import java.time.LocalDate;
 
 public class Cupon {
-    private Integer idCupon;
-    private String codigoCupon;
-    private Integer idPromocion;
-     private LocalDate fechaGeneracion;
-     private Integer idEstaus;
+
+    private Integer id_cupon;
+    private String codigo_cupon;
+    private Integer id_promocion;
+    private LocalDate fecha_generacion;
+    private Integer id_estatus;
 
     public Cupon() {
     }
 
-    public Cupon(Integer idCupon, String codigoCupon, Integer idPromocion, LocalDate fechaGeneracion, Integer idEstaus) {
-        this.idCupon = idCupon;
-        this.codigoCupon = codigoCupon;
-        this.idPromocion = idPromocion;
-        this.fechaGeneracion = fechaGeneracion;
-        this.idEstaus = idEstaus;
+    public Cupon(Integer id_cupon, String codigo_cupon, Integer id_promocion, LocalDate fecha_generacion, Integer id_estaus) {
+        this.id_cupon = id_cupon;
+        this.codigo_cupon = codigo_cupon;
+        this.id_promocion = id_promocion;
+        this.fecha_generacion = fecha_generacion;
+        this.id_estatus = id_estaus;
     }
 
-    public Integer getIdCupon() {
-        return idCupon;
+    public Integer getId_cupon() {
+        return id_cupon;
     }
 
-    public void setIdCupon(Integer idCupon) {
-        this.idCupon = idCupon;
+    public void setId_cupon(Integer id_cupon) {
+        this.id_cupon = id_cupon;
     }
 
-    public String getCodigoCupon() {
-        return codigoCupon;
+    public String getCodigo_cupon() {
+        return codigo_cupon;
     }
 
-    public void setCodigoCupon(String codigoCupon) {
-        this.codigoCupon = codigoCupon;
+    public void setCodigo_cupon(String codigo_cupon) {
+        this.codigo_cupon = codigo_cupon;
     }
 
-    public Integer getIdPromocion() {
-        return idPromocion;
+    public Integer getId_promocion() {
+        return id_promocion;
     }
 
-    public void setIdPromocion(Integer idPromocion) {
-        this.idPromocion = idPromocion;
+    public void setId_promocion(Integer id_promocion) {
+        this.id_promocion = id_promocion;
     }
 
-    public LocalDate getFechaGeneracion() {
-        return fechaGeneracion;
+    public LocalDate getFecha_generacion() {
+        return fecha_generacion;
     }
 
-    public void setFechaGeneracion(LocalDate fechaGeneracion) {
-        this.fechaGeneracion = fechaGeneracion;
+    public void setFecha_generacion(LocalDate fecha_generacion) {
+        this.fecha_generacion = fecha_generacion;
     }
 
-    public Integer getIdEstaus() {
-        return idEstaus;
+    public Integer getId_estatus() {
+        return id_estatus;
     }
 
-    public void setIdEstaus(Integer idEstaus) {
-        this.idEstaus = idEstaus;
+    public void setId_estaus(Integer id_estaus) {
+        this.id_estatus = id_estaus;
     }
-
 }
