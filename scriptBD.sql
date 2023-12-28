@@ -519,13 +519,13 @@ INSERT INTO estado (nombre) VALUES
 -- Insertar municipios para los estados
 
 -- Aguascalientes
-INSERT INTO municipio (nombre, idEstado) VALUES
+INSERT INTO municipio (nombre, id_Estado) VALUES
 ('Aguascalientes', 1), ('Asientos', 1), ('Calvillo', 1), ('Cosío', 1), ('Jesús María', 1),
 ('Pabellón de Arteaga', 1), ('Rincón de Romos', 1), ('San José de Gracia', 1),
 ('Tepezalá', 1), ('El Llano', 1);
 
 -- Baja California
-INSERT INTO municipio (nombre, idEstado) VALUES
+INSERT INTO municipio (nombre, id_Estado) VALUES
 ('Tijuana', 2), ('Mexicali', 2), ('Ensenada', 2), ('Rosarito', 2), ('Tecate', 2),
 ('Playas de Rosarito', 2), ('La Rumorosa', 2), ('San Felipe', 2), ('Puertecitos', 2),
 ('San Quintín', 2);
