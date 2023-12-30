@@ -19,26 +19,41 @@ import modelo.pojo.Usuario;
 public class Validaciones {
 
     public static Boolean validarEmpresa(Empresa empresa) {
-        return empresa.getNombre().isEmpty()
-                && empresa.getRfc().isEmpty()
-                && empresa.getEmail().isEmpty()
-                && empresa.getNombre_comercial().isEmpty()
-                && empresa.getRepresentante_legal().isEmpty()
-                && empresa.getTelefono().length() != 10
-                && empresa.getPaginaWeb().isEmpty();
-
+        return (empresa.getNombre() == null || empresa.getNombre().isEmpty())
+                && (empresa.getRfc() == null || empresa.getRfc().isEmpty())
+                && (empresa.getEmail() == null || empresa.getEmail().isEmpty())
+                && (empresa.getNombre_comercial() == null || empresa.getNombre_comercial().isEmpty())
+                && (empresa.getRepresentante_legal() == null || empresa.getRepresentante_legal().isEmpty())
+                && (empresa.getTelefono() == null || empresa.getTelefono().length() != 10)
+                && (empresa.getPagina_web() == null || empresa.getPagina_web().isEmpty());
     }
 
     public static Boolean validarUsuario(Usuario usuario) {
-        return usuario.getNombre().isEmpty()
-                && usuario.getApellido_paterno().isEmpty()
-                && usuario.getApellido_materno().isEmpty()
-                && usuario.getCurp().isEmpty()
-                && usuario.getCorreo_electronico().isEmpty()
-                && usuario.getUsername().isEmpty()
-                && usuario.getPassword().isEmpty()
-                && usuario.getEmpresa_rfc().isEmpty();
+        boolean camposComunesVacios = (usuario.getNombre() == null || usuario.getNombre().isEmpty())
+                || (usuario.getApellido_paterno() == null || usuario.getApellido_paterno().isEmpty())
+                || (usuario.getApellido_materno() == null || usuario.getApellido_materno().isEmpty())
+                || (usuario.getCurp() == null || usuario.getCurp().isEmpty())
+                || (usuario.getCorreo_electronico() == null || usuario.getCorreo_electronico().isEmpty())
+                || (usuario.getUsername() == null || usuario.getUsername().isEmpty())
+                || (usuario.getPassword() == null || usuario.getPassword().isEmpty());
+
+        if (usuario.getId_rol() == 2) {
+            return camposComunesVacios && (usuario.getEmpresa_rfc() == null || usuario.getEmpresa_rfc().isEmpty());
+        } else {
+            return camposComunesVacios;
+        }
     }
+    public static boolean validarCliente(Cliente cliente) {
+    boolean camposVacios = (cliente.getNombre() == null || cliente.getNombre().isEmpty())
+            || (cliente.getApellido_paterno() == null || cliente.getApellido_paterno().isEmpty())
+            || (cliente.getApellido_materno() == null || cliente.getApellido_materno().isEmpty())
+            || (cliente.getCorreo_electronico() == null || cliente.getCorreo_electronico().isEmpty())
+            || (cliente.getTelefono() == null || cliente.getTelefono().isEmpty())
+            || (cliente.getPassword() == null || cliente.getPassword().isEmpty());
+
+    return camposVacios;
+}
+
 
     public static Boolean ValidarInisioSesion(Usuario usuario) {
         return usuario.getUsername().isEmpty() && usuario.getPassword().isEmpty();
@@ -81,22 +96,29 @@ public class Validaciones {
     }
 
     public static Boolean validarTipoDireccion(Direccion direccion) {
-        if(direccion.getTipo_direccion() != null && direccion.getTipo_direccion() >0){
+
+        boolean camposComunesVacios
+                = (direccion.getCalle().isEmpty() || direccion.getCalle() == null)
+                && (direccion.getCodigo_postal().isEmpty() || direccion.getCodigo_postal() == null)
+                && (direccion.getColonia().isEmpty() || direccion.getColonia() == null)
+                && direccion.getId_municipio() == null
+                && direccion.getNumero() == null;
+
+        if (direccion.getTipo_direccion() != null && direccion.getTipo_direccion() > 0) {
+
             switch (direccion.getTipo_direccion()) {
                 case 1:
-                    return direccion.getEmpresa_rfc() == null;
+                    return camposComunesVacios && (direccion.getEmpresa_rfc() == null || direccion.getEmpresa_rfc().isEmpty());
                 case 2:
-                    return direccion.getId_cliente() == null && direccion.getId_cliente() < 0;
+                    return camposComunesVacios && (direccion.getId_cliente() == null && direccion.getId_cliente() < 0);
                 case 3:
-                   return direccion.getId_sucursal() == null && direccion.getId_sucursal() < 0 ;
-           default:
-               return false;
-            }       
-        }else{
-                   return false;
- 
+                    return camposComunesVacios && (direccion.getId_sucursal() == null && direccion.getId_sucursal() < 0);
+                default:
+                    return false;
+            }
+        } else {
+            return false;
+
         }
-        
-        
     }
 }

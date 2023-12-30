@@ -3,12 +3,11 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/Documentos/GitHub/APICuponSmart/APICuponMart/src/java/modelo/pojo/Direccion.java</file>
-            <file>file:/D:/Documentos/GitHub/APICuponSmart/APICuponMart/src/java/modelo/PromocionDAO.java</file>
-            <file>file:/D:/Documentos/GitHub/APICuponSmart/APICuponMart/src/java/modelo/DireccionDAO.java</file>
-            <file>file:/D:/Documentos/GitHub/APICuponSmart/APICuponMart/src/java/modelo/UsuarioDAO.java</file>
-            <file>file:/D:/Documentos/GitHub/APICuponSmart/APICuponMart/src/java/modelo/EmpresaDAO.java</file>
-            <file>file:/D:/Documentos/GitHub/APICuponSmart/APICuponMart/src/java/mybatis/mybatis-config.xml</file>
+            <file>file:/D:/Documentos/GitHub/old/APICuponSmart/APICuponMart/src/java/ws/ClienteWS.java</file>
+            <file>file:/D:/Documentos/GitHub/old/APICuponSmart/APICuponMart/src/java/utilidades/Validaciones.java</file>
+            <file>file:/D:/Documentos/GitHub/old/APICuponSmart/APICuponMart/src/java/modelo/UsuarioDAO.java</file>
+            <file>file:/D:/Documentos/GitHub/old/APICuponSmart/APICuponMart/src/java/ws/UsuarioWS.java</file>
+            <file>file:/D:/Documentos/GitHub/old/APICuponSmart/APICuponMart/src/java/mybatis/mappers/ClienteMapper.xml</file>
         </group>
     </open-files>
 </project-private>

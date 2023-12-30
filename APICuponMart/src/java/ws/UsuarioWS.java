@@ -8,12 +8,14 @@ import javax.ws.rs.*;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import com.google.gson.Gson;
+import java.util.List;
 import modelo.pojo.Mensaje;
 import modelo.pojo.Usuario;
 import modelo.UsuarioDAO;
 
 
 import javax.ws.rs.Path;
+import modelo.pojo.MensajeUsuarios;
 import utilidades.Validaciones;
 
 /**
@@ -34,7 +36,6 @@ public class UsuarioWS {
         if (Validaciones.validarUsuario(usuario)) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
-        System.out.print(usuario);
         return UsuarioDAO.registrarUsuario(usuario);
     }
 
@@ -65,11 +66,18 @@ public class UsuarioWS {
     @Path("/buscar/{parametro}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Usuario buscarUsuario(@PathParam("parametro") String parametro) {
+    public List<Usuario> buscarUsuario(@PathParam("parametro") String parametro) {
         if (parametro == null || parametro.trim().isEmpty()) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
-        return UsuarioDAO.buscarUsuario(parametro);
+        return UsuarioDAO.buscarUsuarios(parametro);
+    }
+    @Path("/cargarUsuarios")
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public MensajeUsuarios cargarUsuarios() {
+      
+        return UsuarioDAO.cargarUsuarios();
     }
 }
 

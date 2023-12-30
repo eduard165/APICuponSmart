@@ -9,7 +9,7 @@ public class Empresa {
     private String representante_legal;
     private String email;
     private String telefono;
-    private String paginaWeb;
+    private String pagina_web;
     private String id_estatus;
     private byte[] logo;
     private String logoBase64;
@@ -17,14 +17,14 @@ public class Empresa {
     public Empresa() {
     }
 
-    public Empresa(String rfc, String nombre, String nombre_comercial, String representante_legal, String email, String telefono, String paginaWeb, String id_estatus, byte[] logo, String logoBase64) {
+    public Empresa(String rfc, String nombre, String nombre_comercial, String representante_legal, String email, String telefono, String pagina_web, String id_estatus, byte[] logo, String logoBase64) {
         this.rfc = rfc;
         this.nombre = nombre;
         this.nombre_comercial = nombre_comercial;
         this.representante_legal = representante_legal;
         this.email = email;
         this.telefono = telefono;
-        this.paginaWeb = paginaWeb;
+        this.pagina_web = pagina_web;
         this.id_estatus = id_estatus;
         this.logo = logo;
         this.logoBase64 = logoBase64;
@@ -78,12 +78,12 @@ public class Empresa {
         this.telefono = telefono;
     }
 
-    public String getPaginaWeb() {
-        return paginaWeb;
+    public String getPagina_web() {
+        return pagina_web;
     }
 
-    public void setPaginaWeb(String paginaWeb) {
-        this.paginaWeb = paginaWeb;
+    public void setPagina_web(String pagina_web) {
+        this.pagina_web = pagina_web;
     }
 
     public String getId_estatus() {
@@ -109,5 +109,7 @@ public class Empresa {
     public void setLogoBase64(String logoBase64) {
         this.logoBase64 = logoBase64;
     }
+
+    
     
 }

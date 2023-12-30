@@ -4,43 +4,44 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="empresa">
-    <insert id="agregar_empresa" parameterType="modelo.pojo.Empresa">
-        INSERT INTO empresa (nombre, nombre_comercial, representante_legal, email, telefono, pagina_web, rfc, estatus_id)
-        VALUES (#{nombre}, #{nombreComercial}, #{representanteLegal}, #{email}, #{telefono}, #{paginaWeb}, #{RFC}, #{estatusID})
+    <insert id="agregarEmpresa" parameterType="modelo.pojo.Empresa">
+        INSERT INTO empresa (rfc, nombre, nombre_comercial, representante_legal, email, telefono, pagina_web, id_estatus, logo)
+        VALUES (#{rfc}, #{nombre}, #{nombre_comercial}, #{representante_legal}, #{email}, #{telefono}, #{pagina_web}, #{id_estatus}, #{logo})
     </insert>
-    <update id="editar_empresa" parameterType="modelo.pojo.Empresa">
+    <update id="editarEmpresa" parameterType="modelo.pojo.Empresa">
         UPDATE empresa
         SET nombre = #{nombre},
-        nombre_comercial = #{nombreComercial},
-        representante_legal = #{representanteLegal},
+        nombre_comercial = #{nombre_comercial},
+        representante_legal = #{representante_legal},
         email = #{email},
         telefono = #{telefono},
-        pagina_web = #{paginaWeb},
-        estatus_id = #{estatusID}
-        WHERE rfc = #{RFC}
+        pagina_web = #{pagina_web},
+        id_estatus = #{id_estatus},
+        logo = #{logo}
+        WHERE rfc = #{rfc}
     </update>
-    <delete id="eliminar_empresa" parameterType="String">
+    <delete id="eliminarEmpresa" parameterType="String">
         DELETE FROM empresa
-        WHERE rfc = #{RFC}
+        WHERE rfc = #{rfc}
     </delete>
-    <select id="buscar_empresa" resultType="modelo.pojo.Empresa" parameterType="String">
+    <select id="buscarEmpresa" resultType="modelo.pojo.Empresa" parameterType="String">
         SELECT *
         FROM empresa
         WHERE nombre LIKE CONCAT('%', #{param}, '%')
         OR rfc LIKE CONCAT('%', #{param}, '%')
         OR representante_legal LIKE CONCAT('%', #{param}, '%')
     </select>
-    <select id="contar_sucursales_asociadas" resultType="int" parameterType="String">
+    <select id="contarSucursalesAsociadas" resultType="int" parameterType="String">
         SELECT COUNT(*) FROM sucursal
-        WHERE empresa_rfc = #{RFC}
+        WHERE empresa_rfc = #{rfc}
     </select>
-    <update id="subir_logo" parameterType="modelo.pojo.Empresa">
+    <update id="subirLogo" parameterType="modelo.pojo.Empresa">
         UPDATE empresa
         SET logo = #{logo} 
-        WHERE rfc = #{RFC}
+        WHERE rfc = #{rfc}
     </update>
-    <select id="obtener_logo" parameterType="String" resultType="modelo.pojo.Empresa">
+    <select id="obtenerLogo" resultType="modelo.pojo.Empresa" parameterType="String">
         SELECT rfc, TO_BASE64(logo) AS 'logoBase64'
-        FROM empresa WHERE rfc = #{RFC}
+        FROM empresa WHERE rfc = #{rfc}
     </select>
 </mapper>

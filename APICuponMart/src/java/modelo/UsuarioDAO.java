@@ -5,8 +5,10 @@
  */
 package modelo;
 
+import java.util.List;
 import org.apache.ibatis.exceptions.PersistenceException;
 import modelo.pojo.Mensaje;
+import modelo.pojo.MensajeUsuarios;
 import modelo.pojo.Usuario;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
@@ -17,23 +19,23 @@ import org.apache.ibatis.session.SqlSession;
  */
 public class UsuarioDAO {
 
-    public static Mensaje editarUsuario(Usuario usuario) {
+    public static Mensaje registrarUsuario(Usuario usuario) {
         Mensaje msj = new Mensaje();
         Mensaje validacionesDuplicados = new Mensaje();
-        
         msj.setError(true);
+
         validacionesDuplicados.setError(true);
-        
         validacionesDuplicados = validarDuplicados(usuario.getUsername(), usuario.getCurp());
-        
-        if (validacionesDuplicados.isError()) {
+
+        if (!validacionesDuplicados.isError()) {
             switch (usuario.getId_rol()) {
-                case 0:
-                    msj = editarUsuarioComercial(usuario);
-                    break;
                 case 1:
-                    msj = editarUsuarioGeneral(usuario);
+                    msj = registrarUsuarioGeneral(usuario);
                     break;
+                case 2:
+                    msj = registrarUsuarioComercial(usuario);
+                    break;
+
                 default:
                     msj.setMensaje("Rol no válido");
                     break;
@@ -44,21 +46,24 @@ public class UsuarioDAO {
         }
     }
 
-    public static Mensaje registrarUsuario(Usuario usuario) {
+    public static Mensaje editarUsuario(Usuario usuario) {
         Mensaje msj = new Mensaje();
         Mensaje validacionesDuplicados = new Mensaje();
 
         msj.setError(true);
         validacionesDuplicados.setError(true);
+
         validacionesDuplicados = validarDuplicados(usuario.getUsername(), usuario.getCurp());
-        if (validacionesDuplicados.isError()) {
+
+        if (!validacionesDuplicados.isError()) {
             switch (usuario.getId_rol()) {
-                case 0:
-                    msj = registrarUsuarioComercial(usuario);
-                    break;
                 case 1:
-                    msj = registrarUsuarioGeneral(usuario);
+                    msj = editarUsuarioGeneral(usuario);
                     break;
+                case 2:
+                    msj = editarUsuarioComercial(usuario);
+                    break;
+
                 default:
                     msj.setMensaje("Rol no válido");
                     break;
@@ -67,7 +72,6 @@ public class UsuarioDAO {
         } else {
             return validacionesDuplicados;
         }
-
     }
 
     private static Mensaje registrarUsuarioComercial(Usuario usuario) {
@@ -190,25 +194,44 @@ public class UsuarioDAO {
         return msj;
     }
 
-    public static Usuario buscarUsuario(String parametro) {
-        Usuario usuario = null;
-        
+    public static List<Usuario> buscarUsuarios(String parametro) {
+        List<Usuario> usuarios = null;
         SqlSession sqlSession = MyBatisUtil.getSession();
-        
+
         if (sqlSession != null) {
             try {
-                usuario = sqlSession.selectOne("usuario.buscarUsuario", parametro);
+                usuarios = sqlSession.selectList("usuario.buscarUsuario", parametro);
             } finally {
                 sqlSession.close();
             }
         }
-        return usuario;
+
+        return usuarios;
+    }
+
+    public static MensajeUsuarios cargarUsuarios() {
+        MensajeUsuarios usuarios = new MensajeUsuarios();
+        SqlSession sqlSession = MyBatisUtil.getSession();
+        usuarios.setError(true);
+
+        if (sqlSession != null) {
+            try {
+                usuarios.setUsuarios(sqlSession.selectList("usuario.cargarUsuarios"));
+                usuarios.setError(false);
+                usuarios.setMensaje("Todo salio bien");
+            } finally {
+                sqlSession.close();            }
+        }else{
+            usuarios.setMensaje("Algo salio mal");
+        }
+
+        return usuarios;
     }
 
     public static Mensaje validarDuplicados(String username, String curp) {
         Mensaje msj = new Mensaje();
         msj.setError(true);
-        
+
         SqlSession sqlSession = MyBatisUtil.getSession();
 
         if (sqlSession != null) {

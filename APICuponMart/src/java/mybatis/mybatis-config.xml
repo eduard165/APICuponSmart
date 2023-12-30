@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
             <transactionManager type="JDBC"/>
             <dataSource type="POOLED">
                 <property name="driver" value="com.mysql.cj.jdbc.Driver"/>
-                <property name="url" value="jdbc:mysql://127.0.0.1:3306/smartcupon?serverTimezone=UTC"/>
+                <property name="url" value="jdbc:mysql://127.0.0.1:3306/smartcupon2?serverTimezone=UTC"/>
                 <property name="username" value="Eduard"/>
                 <property name="password" value="FlowLetal"/>
                 <property name="poolMaximumActiveConnections" value="50"/>
@@ -24,5 +24,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         <mapper resource="mybatis/mappers/SucursalMapper.xml"/>
         <mapper resource="mybatis/mappers/UsuarioMapper.xml"/>
         <mapper resource="mybatis/mappers/AutenticacionMapper.xml"/>
+        <mapper resource="mybatis/mappers/ClienteMapper.xml"/>
+
     </mappers>
 </configuration>
