@@ -17,10 +17,6 @@ import modelo.pojo.RespuestaLoginUsuario;
 import modelo.pojo.Usuario;
 import utilidades.Validaciones;
 
-/**
- *
- * @author eduar
- */
 @Path("login")
 public class AutenticacionWS {
     
@@ -33,20 +29,22 @@ public class AutenticacionWS {
         Usuario usuario = gson.fromJson(json, Usuario.class);
        if(Validaciones.ValidarInisioSesion(usuario)){
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
+       }else{
+              return  AutenticacionDAO.verificarSesionUsuario(usuario);
        }
-         return  AutenticacionDAO.verificarSesionUsuario(usuario);
+      
     }
     
     @POST
     @Path("/validacion/cliente")
     //@Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
-    public RespuestaLoginCliente verificarCliente(@FormParam("correo_electronico") String correo_electronico,@FormParam("password") String password) {
+    public RespuestaLoginCliente verificarCliente(@FormParam("correo_electronico") String correo_electronico, @FormParam("password") String password) {
       RespuestaLoginCliente respuesta  = null;
         // Gson gson = new Gson();
        // Cliente cliente = gson.fromJson(json, Cliente.class);
   //     if(Validaciones.ValidarInisioSesion(cliente)){
-      //      throw new WebApplicationException(Response.Status.BAD_REQUEST);
+      //      throw new WebApplicationException(Response.Status.BAD_REQUEST);z
        //}
        
         if (!correo_electronico.isEmpty() && !password.isEmpty()){
@@ -56,7 +54,7 @@ public class AutenticacionWS {
         throw new WebApplicationException(Response.Status.BAD_REQUEST);
     }
     
-
+    
     return respuesta;
     
 }

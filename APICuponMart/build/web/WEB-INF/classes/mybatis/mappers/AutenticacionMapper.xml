@@ -4,6 +4,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="autenticacion">
+    
     <select id="verificarCredencialesUsuario" resultType="modelo.pojo.Usuario" parameterType="modelo.pojo.Usuario">
         SELECT id_usuario, nombre, apellido_paterno, apellido_materno, curp, correo_electronico, username, password, id_rol, empresa_rfc
         FROM usuario
