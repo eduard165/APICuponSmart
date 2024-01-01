@@ -1,6 +1,7 @@
 package modelo;
 
 import com.google.gson.Gson;
+import java.util.HashMap;
 import modelo.pojo.Cliente;
 import modelo.pojo.RespuestaLoginCliente;
 import modelo.pojo.RespuestaLoginUsuario;
@@ -41,16 +42,19 @@ public class AutenticacionDAO {
         return respuesta;
     }
     
-    public static RespuestaLoginCliente verificarSesionCliente(Cliente cliente) {
+    public static RespuestaLoginCliente verificarSesionCliente(String correo_electronico, String password) {
         RespuestaLoginCliente respuesta = new RespuestaLoginCliente();
         respuesta.setError(true);
 
         SqlSession conexionBD = MyBatisUtil.getSession();
         if (conexionBD != null) {
             try {
-                Gson gson = new Gson();
-
-             cliente = conexionBD.selectOne("autenticacion.verificarCredencialesCliente", cliente);
+               // Gson gson = new Gson();
+                HashMap<String,String> parametros = new HashMap<>();
+                parametros.put("correo_electronico",correo_electronico);
+                parametros.put("password", password);
+                Cliente cliente = conexionBD.selectOne("autenticacion.verificarCredencialesCliente",parametros);
+           //  cliente = conexionBD.selectOne("autenticacion.verificarCredencialesCliente", cliente);
 
                 if (cliente != null) {
                     respuesta.setError(false);

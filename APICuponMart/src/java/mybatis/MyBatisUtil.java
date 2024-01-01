@@ -12,15 +12,9 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-/**
- *
- * @author eduar
- */
+
 public class MyBatisUtil {
     
-    // COMO BUENAS PRACTICAS TODAS LAS VARIABLES O ATRIBUTOS VAN EN MAYUSCULAS
-    // FINAL SIGNIFICA QUE NO VA A CAMBIAR NI PUEDE SER MANIPULADA
-    // STATIC ES UN METODO QUE NO NECESITA ESTANCIA 
     public static final String RESOURCE = "mybatis/mybatis-config.xml";
     public static final String ENVIROMENT="development";
     

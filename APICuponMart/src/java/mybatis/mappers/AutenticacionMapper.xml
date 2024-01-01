@@ -10,7 +10,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE username = #{username} AND password = #{password}
     </select>
     
-    <select id="verificarCredencialesCliente" resultType="modelo.pojo.Cliente" parameterType="modelo.pojo.Cliente">
+    <select id="verificarCredencialesCliente" resultType="modelo.pojo.Cliente" parameterType="map">
         SELECT id_cliente, nombre, apellido_paterno, apellido_materno, telefono, correo_electronico, fecha_nacimiento, password
         FROM cliente
         WHERE correo_electronico = #{correo_electronico} AND password = #{password}
