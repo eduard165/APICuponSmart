@@ -72,12 +72,12 @@ public class UsuarioWS {
         }
         return UsuarioDAO.buscarUsuarios(parametro);
     }
-    @Path("/cargarUsuarios")
+    @Path("/cargarUsuarios/{id_usuario}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public MensajeUsuarios cargarUsuarios() {
+    public MensajeUsuarios cargarUsuarios(@PathParam("id_usuario") Integer id_usuario) {
       
-        return UsuarioDAO.cargarUsuarios();
+        return UsuarioDAO.cargarUsuarios(id_usuario);
     }
 }
 

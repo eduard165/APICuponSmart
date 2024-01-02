@@ -209,14 +209,14 @@ public class UsuarioDAO {
         return usuarios;
     }
 
-    public static MensajeUsuarios cargarUsuarios() {
+    public static MensajeUsuarios cargarUsuarios(Integer id_usuario) {
         MensajeUsuarios usuarios = new MensajeUsuarios();
         SqlSession sqlSession = MyBatisUtil.getSession();
         usuarios.setError(true);
 
         if (sqlSession != null) {
             try {
-                usuarios.setUsuarios(sqlSession.selectList("usuario.cargarUsuarios"));
+                usuarios.setUsuarios(sqlSession.selectList("usuario.cargarUsuarios", id_usuario));
                 usuarios.setError(false);
                 usuarios.setMensaje("Todo salio bien");
             } finally {

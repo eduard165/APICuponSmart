@@ -4,70 +4,80 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="direccion">
-    <insert id="agregar_direccion_por_cliente" parameterType="modelo.pojo.Direccion">
-        INSERT INTO direccion (calle, numero, codigoPostal, colonia, idMunicipio, idCliente)
-        VALUES (#{calle}, #{numero}, #{codigoPostal}, #{colonia}, #{idMunicipio}, #{idCliente})
+    <insert id="agregarDireccionPorCliente" parameterType="modelo.pojo.Direccion">
+        INSERT INTO direccion (calle, numero, codigo_postal, colonia, id_municipio, id_cliente)
+        VALUES (#{calle}, #{numero}, #{codigo_postal}, #{colonia}, #{id_municipio}, #{id_cliente})
     </insert>
-    <insert id="agregar_direccion_por_empresa" parameterType="modelo.pojo.Direccion">
-        INSERT INTO direccion (calle, numero, codigoPostal, colonia, idMunicipio, empresaRFC)
-        VALUES (#{calle}, #{numero}, #{codigoPostal}, #{colonia}, #{idMunicipio}, #{empresaRFC})
+    <insert id="agregarDireccionPorEmpresa" parameterType="modelo.pojo.Direccion">
+        INSERT INTO direccion (calle, numero, codigo_postal, colonia, id_municipio, empresa_rfc)
+        VALUES (#{calle}, #{numero}, #{codigo_postal}, #{colonia}, #{id_municipio}, #{empresa_rfc})
     </insert>
-    <insert id="agregar_direccion_por_sucursal" parameterType="modelo.pojo.Direccion">
-        INSERT INTO direccion (calle, numero, codigoPostal, colonia, idMunicipio, idSucursal)
-        VALUES (#{calle}, #{numero}, #{codigoPostal}, #{colonia}, #{idMunicipio}, #{idSucursal})
+
+    <insert id="agregarDireccionPorSucursal" parameterType="modelo.pojo.Direccion">
+        INSERT INTO direccion (calle, numero, codigo_postal, colonia, id_municipio, id_sucursal)
+        VALUES (#{calle}, #{numero}, #{codigo_postal}, #{colonia}, #{id_municipio}, #{id_sucursal})
     </insert>
-    <update id="editar_direccion_por_cliente" parameterType="modelo.pojo.Direccion">
+    <update id="editarDireccionPorCliente" parameterType="modelo.pojo.Direccion">
         UPDATE direccion
         SET calle = #{calle},
         numero = #{numero},
-        codigoPostal = #{codigoPostal},
+        codigo_postal = #{codigo_postal},
         colonia = #{colonia},
-        idMunicipio = #{idMunicipio}
-        WHERE idCliente = #{idCliente}
+        id_municipio = #{id_municipio}
+        WHERE id_cliente = #{id_cliente}
     </update>
-    <update id="editar_direccion_por_empresa" parameterType="modelo.pojo.Direccion">
+    <update id="editarDireccionPorEmpresa" parameterType="modelo.pojo.Direccion">
         UPDATE direccion
         SET calle = #{calle},
         numero = #{numero},
-        codigoPostal = #{codigoPostal},
+        codigo_postal = #{codigo_postal},
         colonia = #{colonia},
-        idMunicipio = #{idMunicipio}
-        WHERE empresaRFC = #{empresaRFC}
+        id_municipio = #{id_municipio}
+        WHERE empresa_rfc = #{empresa_rfc}
     </update>
-    <update id="editar_direccion_por_sucursal" parameterType="modelo.pojo.Direccion">
+    <update id="editarDireccionPorSucursal" parameterType="modelo.pojo.Direccion">
         UPDATE direccion
         SET calle = #{calle},
         numero = #{numero},
-        codigoPostal = #{codigoPostal},
+        codigo_postal = #{codigo_postal},
         colonia = #{colonia},
-        idMunicipio = #{idMunicipio}
-        WHERE idSucursal = #{idSucursal}
+        id_municipio = #{id_municipio}
+        WHERE id_sucursal = #{id_sucursal}
     </update>
-    <select id="obtener_direccion_por_cliente" resultType="modelo.pojo.Direccion" parameterType="Integer">
+    <select id="obtenerDireccionPorCliente" resultType="modelo.pojo.Direccion" parameterType="Integer">
         SELECT *
         FROM direccion
-        WHERE idCliente = #{idCliente}
+        WHERE id_cliente = #{id_cliente}
     </select>
-    <select id="obtener_direccion_por_empresa" resultType="modelo.pojo.Direccion" parameterType="String">
+    <select id="obtenerDireccionPorEmpresa" resultType="modelo.pojo.Direccion" parameterType="String">
         SELECT *
         FROM direccion
-        WHERE empresaRFC = #{empresaRFC}
+        WHERE empresa_rfc = #{empresa_rfc}
     </select>
-    <select id="obtener_direccion_por_sucursal" resultType="modelo.pojo.Direccion" parameterType="Integer">
+    <select id="obtenerDireccionPorSucursal" resultType="modelo.pojo.Direccion" parameterType="Integer">
         SELECT *
         FROM direccion
-        WHERE idSucursal = #{idSucursal}
+        WHERE id_sucursal = #{id_sucursal}
     </select>
-    <delete id="eliminar_direccion_por_cliente" parameterType="Integer">
+    <delete id="eliminarDireccionPorCliente" parameterType="Integer">
         DELETE FROM direccion
-        WHERE idCliente = #{idCliente}
+        WHERE id_cliente = #{id_cliente}
     </delete>
-    <delete id="eliminar_direccion_por_empresa" parameterType="String">
+    <delete id="eliminarDireccionPorEmpresa" parameterType="String">
         DELETE FROM direccion
-        WHERE empresaRFC = #{empresaRFC}
+        WHERE empresa_rfc = #{empresa_rfc}
     </delete>
-    <delete id="eliminar_direccion_por_sucursal" parameterType="Integer">
+    <delete id="eliminarDireccionPorSucursal" parameterType="Integer">
         DELETE FROM direccion
-        WHERE idSucursal = #{idSucursal}
+        WHERE id_sucursal = #{id_sucursal}
     </delete>
+    
+    <select id="obtenerEstados" resultType="modelo.pojo.Estado">
+        SELECT * FROM estado
+    </select>
+
+    <select id="obtenerMunicipios" parameterType="int" resultType="modelo.pojo.Municipio">
+        SELECT * FROM municipio WHERE id_estado = #{id_estado}
+    </select>
+
 </mapper>
