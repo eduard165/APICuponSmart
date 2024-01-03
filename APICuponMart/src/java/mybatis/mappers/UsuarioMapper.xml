@@ -64,7 +64,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="cargarUsuarios" resultType="modelo.pojo.Usuario" parameterType="Integer">
         SELECT *
         FROM usuario
-    
+        WHERE id_usuario != #{id_usuario}
     </select>
+
 
 </mapper>

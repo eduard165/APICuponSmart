@@ -1,8 +1,11 @@
 package modelo;
 
+import java.util.List;
 import modelo.pojo.Cliente;
 import modelo.pojo.Direccion;
+import modelo.pojo.Estado;
 import modelo.pojo.Mensaje;
+import modelo.pojo.Municipio;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 import utilidades.Validaciones;
@@ -324,5 +327,37 @@ public class DireccionDAO {
             }
         }
         return mensaje;
+    }
+     public static List<Estado> obtenerEstados() {
+        List<Estado> estados = null;
+
+        SqlSession conexionBD = MyBatisUtil.getSession();
+        if (conexionBD != null) {
+            try {
+                estados = conexionBD.selectList("direccion.obtenerEstados");
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                conexionBD.close();
+            }
+        }
+        return estados;
+
+    }
+
+    public static  List<Municipio> obtenerMunicipios(int idEstado) {
+        List<Municipio> municipios = null;
+        SqlSession conexionDB = MyBatisUtil.getSession();
+        if(conexionDB != null){
+            try {
+                  municipios= conexionDB.selectList("direccion.obtenerMunicipios", idEstado);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }finally{
+                conexionDB.close();
+            }
+        }
+        return municipios;
     }
 }

@@ -9,6 +9,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         FROM smartcupon.empresa e
         JOIN smartcupon.promocion p ON e.rfc = p.empresa_rfc
         JOIN smartcupon.categoria c ON p.id_categoria = c.id_categoria
-        WHERE p.id_estatus = 1; 
+        WHERE p.id_estatus = 1
     </select>
+    <select id="obtenerCategorias" resultType="modelo.pojo.Categoria">
+        SELECT * FROM categoria
+    </select>
+    <select id="buscarPromocionesPorCategoria" resultType="modelo.pojo.Promocion" parameterType="int">
+        SELECT *
+        FROM promocion
+        WHERE id_categoria = #{id_categoria}
+    </select>
+
 </mapper>

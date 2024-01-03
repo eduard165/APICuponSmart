@@ -1,4 +1,3 @@
-
 package modelo;
 
 import java.util.ArrayList;
@@ -97,7 +96,7 @@ public class EmpresaDAO {
                 empresas = sqlSession.selectList("empresa.buscarEmpresa", parametro);
             } catch (Exception e) {
                 e.printStackTrace();
-            }finally {
+            } finally {
                 sqlSession.close();
             }
         }
@@ -110,7 +109,7 @@ public class EmpresaDAO {
         if (sqlSession != null) {
             try {
                 empresa = sqlSession.selectOne("empresa.buscarEmpresa", parametro);
-            }catch (Exception e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             } finally {
                 sqlSession.close();
@@ -162,4 +161,18 @@ public class EmpresaDAO {
         return empresa;
     }
 
+    public static List<Empresa> cargarEmpresas() {
+        List<Empresa> empresas = new ArrayList<>();
+        SqlSession sqlSession = MyBatisUtil.getSession();
+        if (sqlSession != null) {
+            try {
+                empresas = sqlSession.selectList("empresa.cargarEmpresas");
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                sqlSession.close();
+            }
+        }
+        return empresas;
+    }
 }
