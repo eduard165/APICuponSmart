@@ -61,7 +61,7 @@ public class AutenticacionDAO {
                     respuesta.setContenido("Bienvenid(@) " + cliente.getNombre() + " al sistema .");
                     respuesta.setCliente(cliente);
                 } else {
-                    respuesta.setContenido("Numero de personal y/o contraseña incorrectos, favor de verificar");
+                    respuesta.setContenido("Correo y/o contraseña incorrectos");
                 }
             } catch (Exception e) {
                 respuesta.setContenido("Error: " + e.getMessage());

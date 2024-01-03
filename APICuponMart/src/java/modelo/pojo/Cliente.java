@@ -9,12 +9,14 @@ public class Cliente {
     private String telefono;
     private String correo_electronico;
     private String fecha_nacimiento;
+    private String calle;
+    private Integer numero_calle;
     private String password;
 
     public Cliente() {
     }
 
-    public Cliente(Integer id_cliente, String nombre, String apellido_paterno, String apellido_materno, String telefono, String correo_electronico, String fecha_nacimiento, String password) {
+    public Cliente(Integer id_cliente, String nombre, String apellido_paterno, String apellido_materno, String telefono, String correo_electronico, String fecha_nacimiento, String calle, Integer numero_calle,String password) {
         this.id_cliente = id_cliente;
         this.nombre = nombre;
         this.apellido_paterno = apellido_paterno;
@@ -22,6 +24,8 @@ public class Cliente {
         this.telefono = telefono;
         this.correo_electronico = correo_electronico;
         this.fecha_nacimiento = fecha_nacimiento;
+        this.calle = calle;
+        this.numero_calle = numero_calle;
         this.password = password;
     }
 
@@ -88,5 +92,23 @@ public class Cliente {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getCalle() {
+        return calle;
+    }
+
+    public void setCalle(String calle) {
+        this.calle = calle;
+    }
+
+    public Integer getNumero_calle() {
+        return numero_calle;
+    }
+
+    public void setNumero_calle(Integer numero_calle) {
+        this.numero_calle = numero_calle;
+    }
+    
+    
     
 }

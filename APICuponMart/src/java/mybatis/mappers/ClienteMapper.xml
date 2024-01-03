@@ -6,19 +6,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="cliente">
 
     <insert id="insertarCliente" parameterType="modelo.pojo.Cliente">
-        INSERT INTO cliente (nombre, apellido_paterno, apellido_materno, telefono, correo_electronico, fecha_nacimiento, password)
-        VALUES (#{nombre}, #{apellido_paterno}, #{apellido_materno}, #{telefono}, #{correo_electronico}, #{fecha_nacimiento}, #{password})
+        INSERT INTO cliente (nombre, apellido_paterno, apellido_materno, telefono, correo_electronico, fecha_nacimiento,calle,numero_calle, password)
+        VALUES (#{nombre}, #{apellido_paterno}, #{apellido_materno}, #{telefono}, #{correo_electronico}, #{fecha_nacimiento}, #{calle},#{numero_calle},#{password})
     </insert>
 
     <select id="obtenerClientePorId" parameterType="int" resultType="modelo.pojo.Cliente">
-        SELECT id_cliente, nombre, apellido_paterno, apellido_materno, telefono, correo_electronico, fecha_nacimiento, password 
+        SELECT id_cliente, nombre, apellido_paterno, apellido_materno, telefono, correo_electronico, fecha_nacimiento,calle,numero_calle, password 
         FROM cliente WHERE id_cliente = #{idCliente}
     </select>
 
     <update id="editarCliente" parameterType="modelo.pojo.Cliente">
         UPDATE cliente
         SET nombre = #{nombre}, apellido_paterno = #{apellidoPaterno}, apellido_materno = #{apellidoMaterno},
-            telefono = #{telefono}, correo_electronico = #{correoElectronico}, fecha_nacimiento = #{fechaNacimiento}, password = #{password}
+            telefono = #{telefono}, correo_electronico = #{correoElectronico}, fecha_nacimiento = #{fechaNacimiento}, calle = #{calle},numero_calle=#{numero_calle},password = #{password}
         WHERE id_cliente = #{idCliente}
     </update>
 
