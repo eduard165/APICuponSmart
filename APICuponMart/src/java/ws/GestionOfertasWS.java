@@ -18,9 +18,11 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
+import modelo.CategoriaDAO;
 import modelo.CuponDAO;
 import modelo.EmpresaDAO;
 import modelo.PromocionDAO;
+import modelo.pojo.Categoria;
 import modelo.pojo.Cupon;
 import modelo.pojo.Empresa;
 import modelo.pojo.Mensaje;
@@ -81,20 +83,21 @@ public class GestionOfertasWS {
         }
         return PromocionDAO.buscarPromociones(parametro);
     }
+
     @DELETE
     @Path("/eliminarPromocion/{idPromocion}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje eliminarPromocion(@PathParam ("idPromocion") Integer idPromocion){
-       if(idPromocion<0 && idPromocion == null){
-           throw new WebApplicationException(Response.Status.BAD_REQUEST);
-       } 
-       return PromocionDAO.eliminarPromocion(idPromocion);
+    public Mensaje eliminarPromocion(@PathParam("idPromocion") Integer idPromocion) {
+        if (idPromocion < 0 && idPromocion == null) {
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+        return PromocionDAO.eliminarPromocion(idPromocion);
     }
-    
-     @PUT
+
+    @PUT
     @Path("registrarFoto/{idPromocion}")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje registrarFotografia(@PathParam("idPromocion") Integer idPromocion,byte[] foto) {
+    public Mensaje registrarFotografia(@PathParam("idPromocion") Integer idPromocion, byte[] foto) {
         if (idPromocion == null && idPromocion <= 0 && foto == null) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
@@ -105,16 +108,28 @@ public class GestionOfertasWS {
     @Path("obtenerFoto/{idPromocion}")
     @Produces(MediaType.APPLICATION_JSON)
     public Promocion ObtenerFotografia(@PathParam("idPromocion") Integer idPromocion) {
-        if (idPromocion == null && idPromocion<=0) {
+        if (idPromocion == null && idPromocion <= 0) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
         return PromocionDAO.obtenerImagenPorId(idPromocion);
     }
+
+    @GET
+    @Path("obtenerCategorias")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Categoria> recuperarCategoriasDisponibles() {
+        return CategoriaDAO.recuperarCategoriasDisponibles();
+    }
+
+    @GET
+    @Path("PromocionesPorCategoria/{id_categoria}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Promocion> recuperarPromocionesPorCategoria(@PathParam("id_categoria") Integer id_categoria) {
     
-    
+        return CategoriaDAO.recuperarPromocionesPorCategoria(id_categoria);
+    }
+
 //////////////////////* CUPONES*//////////////////////////////////////////////
-    
-    
     @GET
     @Path("/cuponesDisponibles")
     @Produces(MediaType.APPLICATION_JSON)

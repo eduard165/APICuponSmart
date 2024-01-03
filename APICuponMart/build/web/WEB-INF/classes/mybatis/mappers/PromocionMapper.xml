@@ -4,44 +4,45 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="promocion">
-    <insert id="agregar_promocion" parameterType="modelo.pojo.Promocion">
+    <insert id="agregarPromocion" parameterType="modelo.pojo.Promocion">
         INSERT INTO promocion (nombre_promocion, descripcion, fecha_inicio, fecha_termino, restricciones, id_tipo_promocion, porcentaje_descuento, codigo_promocion, empresa_rfc)
-        VALUES (#{nombrePromocion}, #{descripcion}, #{fechaInicio}, #{fechaTermino}, #{restricciones}, #{idTipoPromocion}, #{porcentajeDescuento}, #{codigoPromocion}, #{empresaRFC})
+        VALUES (#{nombre_promocion}, #{descripcion}, #{fecha_inicio}, #{fecha_termino}, #{restricciones}, #{idTipoPromocion}, #{porcentajeDescuento}, #{codigoPromocion}, #{empresaRFC})
     </insert>
-    <update id="editar_promocion" parameterType="modelo.pojo.Promocion">
+    <update id="editarPromocion" parameterType="modelo.pojo.Promocion">
         UPDATE promocion
-        SET nombre_promocion = #{nombrePromocion},
+        SET nombre_promocion = #{nombre_promocion},
         descripcion = #{descripcion},
-        fecha_inicio = #{fechaInicio},
-        fecha_termino = #{fechaTermino},
+        fecha_inicio = #{fecha_inicio},
+        fecha_termino = #{fecha_termino},
         restricciones = #{restricciones},
-        id_tipo_promocion = #{idTipoPromocion}, 
-        porcentaje_descuento = #{porcentajeDescuento},
-        codigo_promocion = #{codigoPromocion},
-        empresa_rfc = #{empresaRFC}
-        WHERE id_promocion = #{idPromocion}
+        id_tipo_promocion = #{id_tipo_promocion}, 
+        porcentaje_descuento = #{porcentaje_descuento},
+        codigo_promocion = #{codigo_promocion},
+        empresa_rfc = #{empresa_rfc}
+        WHERE id_promocion = #{id_promocion}
     </update>
-    <delete id="eliminar_promocion" parameterType="Integer">
+    <delete id="eliminarPromocion" parameterType="Integer">
         DELETE FROM promocion
-        WHERE id_promocion = #{idPromocion}
+        WHERE id_promocion = #{id_promocion}
     </delete>
-    <select id="buscar_promociones" resultType="modelo.pojo.Promocion" parameterType="modelo.pojo.Promocion">
+    <select id="buscarPromociones" resultType="modelo.pojo.Promocion" parameterType="modelo.pojo.Promocion">
         SELECT *
         FROM promocion
-        WHERE (empresa_rfc = #{empresaRFC} OR #{empresaRFC} IS NULL)
-        AND (fecha_termino >= #{fechaVencimiento} OR #{fechaVencimiento} IS NULL)
+        WHERE (empresa_rfc = #{empresa_rfc} OR #{empresa_rfc} IS NULL)
+        AND (fecha_termino >= #{fecha_vencimiento} OR #{fecha_vencimiento} IS NULL)
     </select>
-    <update id="cambiar_estado_promocion" parameterType="map">
+    <update id="cambiarEstadoPromocion" parameterType="map">
         UPDATE promocion SET estatus_id = #{nuevoEstatusID} WHERE id_promocion = #{idPromocion}
     </update>   
-    <update id="subir_imagen" parameterType="modelo.pojo.Promocion">
+    <update id="subirImagen" parameterType="modelo.pojo.Promocion">
         UPDATE promocion
         SET imagen = #{imagen} 
-        WHERE id_promocion = #{idPromocion}
+        WHERE id_promocion = #{id_promocion}
     </update>
-    <select id="obtener_imagen" parameterType="int" resultType="modelo.pojo.Promocion">
+    <select id="obtenerImagen" parameterType="int" resultType="modelo.pojo.Promocion">
         SELECT TO_BASE64(imagen) AS 'imagenBase64'
         FROM promocion
-        WHERE id_promocion = #{idPromocion}
+        WHERE id_promocion = #{id_promocion}
     </select>
+    
 </mapper>
