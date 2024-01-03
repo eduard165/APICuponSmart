@@ -12,18 +12,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <select id="obtenerClientePorId" parameterType="int" resultType="modelo.pojo.Cliente">
         SELECT id_cliente, nombre, apellido_paterno, apellido_materno, telefono, correo_electronico, fecha_nacimiento,calle,numero_calle, password 
-        FROM cliente WHERE id_cliente = #{idCliente}
+        FROM cliente WHERE id_cliente = #{id_cliente}
     </select>
 
     <update id="editarCliente" parameterType="modelo.pojo.Cliente">
-        UPDATE cliente
-        SET nombre = #{nombre}, apellido_paterno = #{apellidoPaterno}, apellido_materno = #{apellidoMaterno},
-            telefono = #{telefono}, correo_electronico = #{correoElectronico}, fecha_nacimiento = #{fechaNacimiento}, calle = #{calle},numero_calle=#{numero_calle},password = #{password}
-        WHERE id_cliente = #{idCliente}
+       UPDATE cliente
+       SET nombre = #{nombre}, apellido_paterno = #{apellido_paterno}, apellido_materno = #{apellido_materno}, telefono = #{telefono},fecha_nacimiento = #{fecha_nacimiento},
+       calle = #{calle}, numero_calle = #{numero_calle}, password = #{password}
+        WHERE id_cliente = #{id_cliente}
     </update>
 
     <delete id="eliminarCliente" parameterType="int">
-        DELETE FROM cliente WHERE id_cliente = #{idCliente}
+        DELETE FROM cliente WHERE id_cliente = #{id_cliente}
     </delete>
 
 </mapper>
