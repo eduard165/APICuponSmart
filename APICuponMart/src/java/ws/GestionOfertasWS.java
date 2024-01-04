@@ -126,7 +126,17 @@ public class GestionOfertasWS {
     @Produces(MediaType.APPLICATION_JSON)
     public List<Promocion> recuperarPromocionesPorCategoria(@PathParam("id_categoria") Integer id_categoria) {
     
-        return CategoriaDAO.recuperarPromocionesPorCategoria(id_categoria);
+        return PromocionDAO.recuperarPromocionesPorCategoria(id_categoria);
+    }
+    
+    
+    
+   @GET
+    @Path("PromocionesEmpresa/{id_categoria}")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Promocion> recuperarPromocionesEmpresa(@PathParam("id_categoria") Integer id_categoria) {
+    
+        return PromocionDAO.recuperarPromocionesEmpresa(id_categoria);
     }
 
 //////////////////////* CUPONES*//////////////////////////////////////////////

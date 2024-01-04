@@ -178,5 +178,37 @@ public static List<Promocion> buscarPromociones(String parametro) {
         }
         return promocion;
     }
+    
+    public static List<Promocion> recuperarPromocionesPorCategoria(Integer id_categoria) {
+        List<Promocion> promociones = new ArrayList<>();
+        SqlSession sqlSession = MyBatisUtil.getSession();
+        if (sqlSession != null) {
+            try {
+                promociones = sqlSession.selectList("promocion.buscarPromocionesPorCategoria",id_categoria);
+                sqlSession.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                sqlSession.close();
+            }
+        }
+        return promociones;
+    }
+    
+    public static List<Promocion> recuperarPromocionesEmpresa(Integer id_categoria) {
+        List<Promocion> promociones = new ArrayList<>();
+        SqlSession sqlSession = MyBatisUtil.getSession();
+        if (sqlSession != null) {
+            try {
+                promociones = sqlSession.selectList("promocion.obtenerPromocionesEmpresa",id_categoria);
+                sqlSession.commit();
+            } catch (Exception e) {
+                e.printStackTrace();
+            } finally {
+                sqlSession.close();
+            }
+        }
+        return promociones;
+    }
 
 }

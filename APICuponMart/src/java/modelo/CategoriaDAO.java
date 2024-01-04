@@ -33,19 +33,5 @@ public class CategoriaDAO {
         }
         return categorias;
     }
-    public static List<Promocion> recuperarPromocionesPorCategoria(Integer id_categoria) {
-        List<Promocion> categorias = new ArrayList<>();
-        SqlSession sqlSession = MyBatisUtil.getSession();
-        if (sqlSession != null) {
-            try {
-                int filasAfectadas = sqlSession.insert("categoria.buscarPromocionesPorCategoria",id_categoria);
-                sqlSession.commit();
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                sqlSession.close();
-            }
-        }
-        return categorias;
-    }
+    
 }

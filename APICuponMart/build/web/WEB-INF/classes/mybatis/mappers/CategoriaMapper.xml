@@ -14,10 +14,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     <select id="obtenerCategorias" resultType="modelo.pojo.Categoria">
         SELECT * FROM categoria
     </select>
-    <select id="buscarPromocionesPorCategoria" resultType="modelo.pojo.Promocion" parameterType="int">
-        SELECT *
-        FROM promocion
-        WHERE id_categoria = #{id_categoria}
-    </select>
+    
 
 </mapper>

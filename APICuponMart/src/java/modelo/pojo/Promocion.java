@@ -26,8 +26,11 @@ public class Promocion {
     private BigDecimal porcentaje_descuento;
     private String codigo_promocion;
     private String empresa_rfc;
+    private String nombre_empresa;
+    private String nombre_tipo;
     private Integer id_categoria;
     private Integer id_estatus;
+    
 
     public Promocion() {
     }
