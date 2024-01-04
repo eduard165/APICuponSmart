@@ -45,20 +45,26 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE id_sucursal = #{id_sucursal}
     </update>
     <select id="obtenerDireccionPorCliente" resultType="modelo.pojo.Direccion" parameterType="Integer">
-        SELECT *
-        FROM direccion
+        SELECT d.*, m.id_estado
+        FROM direccion d
+        JOIN municipio m ON d.id_municipio = m.id_municipio
         WHERE id_cliente = #{id_cliente}
     </select>
+
     <select id="obtenerDireccionPorEmpresa" resultType="modelo.pojo.Direccion" parameterType="String">
-        SELECT *
-        FROM direccion
+        SELECT d.*, m.id_estado
+        FROM direccion d
+        JOIN municipio m ON d.id_municipio = m.id_municipio
         WHERE empresa_rfc = #{empresa_rfc}
     </select>
+
     <select id="obtenerDireccionPorSucursal" resultType="modelo.pojo.Direccion" parameterType="Integer">
-        SELECT *
-        FROM direccion
+        SELECT d.*, m.id_estado
+        FROM direccion d
+        JOIN municipio m ON d.id_municipio = m.id_municipio
         WHERE id_sucursal = #{id_sucursal}
     </select>
+
     <delete id="eliminarDireccionPorCliente" parameterType="Integer">
         DELETE FROM direccion
         WHERE id_cliente = #{id_cliente}

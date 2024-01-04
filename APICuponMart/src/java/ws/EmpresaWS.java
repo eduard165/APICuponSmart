@@ -5,6 +5,7 @@ import com.google.gson.Gson;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -51,12 +52,12 @@ public class EmpresaWS {
         return EmpresaDAO.editarEmpresa(empresa);
     }
 
-    @Path("/eliminar/{empresaRFC}")
+    @Path("/eliminar")
     @DELETE
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje eliminarEmpresa(@PathParam("empresaRFC") String empresaRFC) {
-        if (empresaRFC != null && !empresaRFC.isEmpty()) {
-            return EmpresaDAO.eliminarEmpresa(empresaRFC);
+    public Mensaje eliminarEmpresa(@FormParam("rfc") String rfc) {
+        if (rfc != null && !rfc.isEmpty()) {
+            return EmpresaDAO.eliminarEmpresa(rfc);
         } else {
             return new Mensaje(true, "El RFC no puede estar vacío");
         }
