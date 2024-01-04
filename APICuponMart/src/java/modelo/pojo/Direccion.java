@@ -8,6 +8,7 @@ public class Direccion {
     private String codigo_postal;
     private String colonia;
     private Integer id_municipio;
+    private Integer id_estado;
     private Integer id_cliente;
     private Integer id_sucursal;
     private String empresa_rfc;
@@ -16,18 +17,21 @@ public class Direccion {
     public Direccion() {
     }
 
-    public Direccion(Integer id_direccion, String calle, Integer numero, String codigo_postal, String colonia, Integer id_municipio, Integer id_cliente, Integer id_sucursal, String empresa_rfc, Integer tipo_direccion) {
+    public Direccion(Integer id_direccion, String calle, Integer numero, String codigo_postal, String colonia, Integer id_municipio, Integer id_estado, Integer id_cliente, Integer id_sucursal, String empresa_rfc, Integer tipo_direccion) {
         this.id_direccion = id_direccion;
         this.calle = calle;
         this.numero = numero;
         this.codigo_postal = codigo_postal;
         this.colonia = colonia;
         this.id_municipio = id_municipio;
+        this.id_estado = id_estado;
         this.id_cliente = id_cliente;
         this.id_sucursal = id_sucursal;
         this.empresa_rfc = empresa_rfc;
         this.tipo_direccion = tipo_direccion;
     }
+
+
 
     public Integer getId_direccion() {
         return id_direccion;
@@ -107,6 +111,14 @@ public class Direccion {
 
     public void setTipo_direccion(Integer tipo_direccion) {
         this.tipo_direccion = tipo_direccion;
+    }
+
+    public Integer getId_estado() {
+        return id_estado;
+    }
+
+    public void setId_estado(Integer id_estado) {
+        this.id_estado = id_estado;
     }
     
 }

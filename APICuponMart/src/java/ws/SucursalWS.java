@@ -27,7 +27,7 @@ import utilidades.Validaciones;
 public class SucursalWS {
 
     @POST
-    @Path("/registrar")
+    @Path("registrar")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje registrarSucursal(String json) {
@@ -40,7 +40,7 @@ public class SucursalWS {
     }
 
     @PUT
-    @Path("/editar")
+    @Path("editar")
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje editarSucursal(String json) {
@@ -53,7 +53,7 @@ public class SucursalWS {
     }
 
     @DELETE
-    @Path("/eliminar/{idSucursal}")
+    @Path("eliminar/{idSucursal}")
     @Produces(MediaType.APPLICATION_JSON)
     public Mensaje eliminarSucursal(@PathParam("idSucursal") int idSucursal) {
         if (idSucursal > 0) {
@@ -64,7 +64,7 @@ public class SucursalWS {
     }
 
     @GET
-    @Path("/buscar/{parametro}")
+    @Path("buscar/{parametro}")
     @Produces(MediaType.APPLICATION_JSON)
     public Sucursal buscarSucursal(@PathParam("parametro") String parametro) {
         if (parametro == null || parametro.isEmpty()) {
@@ -73,12 +73,19 @@ public class SucursalWS {
         return SucursalDAO.buscarSucursal(parametro);
     }
     @GET
-    @Path("/buscarLista/{parametro}")
+    @Path("buscarLista/{parametro}")
     @Produces(MediaType.APPLICATION_JSON)
     public List<Sucursal> buscarSucursales(@PathParam("parametro") String parametro) {
         if (parametro == null || parametro.isEmpty()) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
         return SucursalDAO.buscarSucursales(parametro);
+    }
+    @GET
+    @Path("cargarSucursales")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Sucursal> cargarSucursales() {
+       
+        return SucursalDAO.cargarSucursales();
     }
 }

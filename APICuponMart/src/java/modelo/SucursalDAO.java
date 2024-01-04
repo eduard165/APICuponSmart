@@ -125,5 +125,16 @@ public class SucursalDAO {
         }
         return sucursal;
     }
-
+ public static List<Sucursal> cargarSucursales() {
+        List<Sucursal> sucursal = null;
+        SqlSession sqlSession = MyBatisUtil.getSession();
+        if (sqlSession != null) {
+            try {
+                sucursal = sqlSession.selectList("sucursal.cargarSucursal");
+            } finally {
+                sqlSession.close();
+            }
+        }
+        return sucursal;
+    }
 }
