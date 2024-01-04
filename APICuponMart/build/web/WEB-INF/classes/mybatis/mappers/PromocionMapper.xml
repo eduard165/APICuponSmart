@@ -43,9 +43,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SET imagen = #{imagen} 
         WHERE id_promocion = #{id_promocion}
     </update>
-    <select id="obtenerImagen" parameterType="int" resultType="modelo.pojo.Promocion">
-        SELECT TO_BASE64(imagen) AS 'imagenBase64'
-        FROM promocion
+    <select id="obtenerLogo" parameterType="int" resultType="modelo.pojo.Promocion">
+        SELECT TO_BASE64(imagen) AS imagenBase64
+        FROM promocion 
         WHERE id_promocion = #{id_promocion}
     </select>
     <select id="buscarPromocionesPorCategoria" resultType="modelo.pojo.Promocion" parameterType="int">
@@ -62,16 +62,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE id_categoria = #{id_categoria}
     </select>
 
-<select id="obtenerDatosSucursal" parameterType="int" resultType="map">
-    SELECT s.nombre AS nombre_sucursal,
-           s.direccion,
-           p.*
-    FROM sucursal s
-    LEFT JOIN sucursal_promocion sp ON s.id_sucursal = sp.id_sucursal
-    LEFT JOIN promocion p ON sp.id_promocion = p.id_promocion
-    WHERE s.id_sucursal = #{idSucursal}
-</select>
- <select id="buscarPorCodigoPromocion" parameterType="String" resultType="modelo.pojo.Promocion">
+    <select id="obtenerDatosSucursal" parameterType="int" resultType="map">
+        SELECT s.nombre AS nombre_sucursal, p.* 
+        FROM sucursal s
+        LEFT JOIN sucursal_promocion sp ON s.id_sucursal = sp.id_sucursal
+        LEFT JOIN promocion p ON sp.id_promocion = p.id_promocion
+        WHERE s.id_sucursal = #{idSucursal}
+    </select>
+    <select id="buscarPorCodigoPromocion" parameterType="String" resultType="modelo.pojo.Promocion">
         SELECT * FROM promocion WHERE codigo_promocion = #{codigo_promocion}
     </select>
 

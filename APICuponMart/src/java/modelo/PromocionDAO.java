@@ -179,12 +179,13 @@ public class PromocionDAO {
         return rest;
     }
 
-    public static Promocion obtenerImagenPorId(int idPromocion) {
-        Promocion promocion = null;
+    public static Promocion obtenerImagenPorId(int id_promocion) {
+        Promocion promocion = new Promocion();
         SqlSession conexionBD = MyBatisUtil.getSession();
         if (conexionBD != null) {
             try {
-                promocion = conexionBD.selectOne("promocion.obtenerimagen", idPromocion);
+                promocion = conexionBD.selectOne("promocion.obtenerLogo", id_promocion);
+                System.out.print(promocion.getImagenBase64());
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -231,7 +232,7 @@ public class PromocionDAO {
         SqlSession sqlSession = MyBatisUtil.getSession();
         if (sqlSession != null) {
             try {
-                promociones = sqlSession.selectList("promocion.cargarPromociones");
+                promociones = sqlSession.selectList("promocion.obtenerDatosSucursal");
                 sqlSession.commit();
             } catch (Exception e) {
                 e.printStackTrace();

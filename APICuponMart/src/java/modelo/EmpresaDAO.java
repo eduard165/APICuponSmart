@@ -151,7 +151,7 @@ public class EmpresaDAO {
         SqlSession conexionBD = MyBatisUtil.getSession();
         if (conexionBD != null) {
             try {
-                empresa = conexionBD.selectOne("empresa.obtenerLogo", rfc);
+                empresa = conexionBD.selectOne("empresa.obtenerLog", rfc);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {

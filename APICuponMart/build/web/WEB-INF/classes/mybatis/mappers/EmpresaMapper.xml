@@ -40,8 +40,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         SET logo = #{logo} 
         WHERE rfc = #{rfc}
     </update>
-    <select id="obtenerLogo" resultType="modelo.pojo.Empresa" parameterType="String">
-        SELECT rfc, TO_BASE64(logo) AS 'logoBase64'
+    <select id="obtenerLog" resultType="modelo.pojo.Empresa" parameterType="String">
+        SELECT rfc, TO_BASE64(logo) AS logoBase64
         FROM empresa WHERE rfc = #{rfc}
     </select>
     <select id="cargarEmpresas" resultType="modelo.pojo.Empresa">

@@ -17,8 +17,10 @@ public class Promocion {
     private Integer id_promocion;
     private String nombre_promocion;
     private String descripcion;
+    
     private byte[] imagen;
     private String imagenBase64;
+
     private String fecha_inicio;
     private String fecha_termino;
     private String restricciones;
