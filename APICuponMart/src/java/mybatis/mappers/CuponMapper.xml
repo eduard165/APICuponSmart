@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cupon">
+    <select id="listar_cupones_disponibles" resultType="modelo.pojo.Cupon">
+        SELECT cp.id_cupon, cp.codigo_cupon, cp.promocion_id, pr.nombre_promocion, pr.fecha_termino, pr.estatus_id
+        FROM cupon cp
+        JOIN promocion pr ON cp.promocion_id = pr.id_promocion
+        WHERE pr.fecha_termino >= NOW() AND pr.id_estatus = 1
+    </select>
+    <select id="obtener_cupones_disponibles" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM cupon WHERE codigo_cupon = #{codigoCupon}
+    </select>
+    <update id="canjear_cupon" parameterType="String">
+        UPDATE cupon SET id_estatus = 2 WHERE codigo_cupon = #{codigoCupon}
+    </update>
+</mapper>

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="empresa">
+    <insert id="agregarEmpresa" parameterType="modelo.pojo.Empresa">
+        INSERT INTO empresa (rfc, nombre, nombre_comercial, representante_legal, email, telefono, pagina_web, id_estatus, logo)
+        VALUES (#{rfc}, #{nombre}, #{nombre_comercial}, #{representante_legal}, #{email}, #{telefono}, #{pagina_web}, #{id_estatus}, #{logo})
+    </insert>
+    <update id="editarEmpresa" parameterType="modelo.pojo.Empresa">
+        UPDATE empresa
+        SET nombre = #{nombre},
+        nombre_comercial = #{nombre_comercial},
+        representante_legal = #{representante_legal},
+        email = #{email},
+        telefono = #{telefono},
+        pagina_web = #{pagina_web},
+        id_estatus = #{id_estatus},
+        logo = #{logo}
+        WHERE rfc = #{rfc}
+    </update>
+    <delete id="eliminarEmpresa" parameterType="String">
+        DELETE FROM empresa
+        WHERE rfc = #{rfc}
+    </delete>
+    <select id="buscarEmpresa" resultType="modelo.pojo.Empresa" parameterType="String">
+        SELECT *
+        FROM empresa
+        WHERE nombre LIKE CONCAT('%', #{param}, '%')
+        OR rfc LIKE CONCAT('%', #{param}, '%')
+        OR representante_legal LIKE CONCAT('%', #{param}, '%')
+    </select>
+    <select id="contarSucursalesAsociadas" resultType="int" parameterType="String">
+        SELECT COUNT(*) FROM sucursal
+        WHERE empresa_rfc = #{rfc}
+    </select>
+    <update id="subirLogo" parameterType="modelo.pojo.Empresa">
+        UPDATE empresa
+        SET logo = #{logo} 
+        WHERE rfc = #{rfc}
+    </update>
+    <select id="obtenerLogo" resultType="modelo.pojo.Empresa" parameterType="String">
+        SELECT rfc, TO_BASE64(logo) AS 'logoBase64'
+        FROM empresa WHERE rfc = #{rfc}
+    </select>
+    <select id="cargarEmpresas" resultType="modelo.pojo.Empresa">
+        SELECT *
+        FROM empresa 
+    </select>
+</mapper>
