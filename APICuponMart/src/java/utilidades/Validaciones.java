@@ -43,16 +43,16 @@ public class Validaciones {
             return camposComunesVacios;
         }
     }
+
     public static boolean validarCliente(Cliente cliente) {
-    boolean camposVacios = (cliente.getNombre() == null || cliente.getNombre().isEmpty())
-            || (cliente.getApellido_paterno() == null || cliente.getApellido_paterno().isEmpty())
-            || (cliente.getApellido_materno() == null || cliente.getApellido_materno().isEmpty())
-            || (cliente.getTelefono() == null || cliente.getTelefono().isEmpty())
-            || (cliente.getPassword() == null || cliente.getPassword().isEmpty());
+        boolean camposVacios = (cliente.getNombre() == null || cliente.getNombre().isEmpty())
+                || (cliente.getApellido_paterno() == null || cliente.getApellido_paterno().isEmpty())
+                || (cliente.getApellido_materno() == null || cliente.getApellido_materno().isEmpty())
+                || (cliente.getTelefono() == null || cliente.getTelefono().isEmpty())
+                || (cliente.getPassword() == null || cliente.getPassword().isEmpty());
 
-    return camposVacios;
-}
-
+        return camposVacios;
+    }
 
     public static Boolean ValidarInisioSesion(Usuario usuario) {
         return usuario.getUsername().isEmpty() && usuario.getPassword().isEmpty();
@@ -85,39 +85,32 @@ public class Validaciones {
                 && promocion.getId_categoria() <= 0;
     }
 
-    public static Boolean validarDireccion(Direccion direccion) {
-        return direccion.getCalle().isEmpty()
-                && direccion.getCodigo_postal().isEmpty()
-                && direccion.getColonia().isEmpty()
-                && direccion.getId_municipio() == null
-                && direccion.getNumero() == null
-                && validarTipoDireccion(direccion);
-    }
 
-    public static Boolean validarTipoDireccion(Direccion direccion) {
+    public static boolean validarTipoDireccion(Direccion direccion) {
+    boolean camposComunesLlenos = direccion.getCalle() != null
+            && direccion.getCodigo_postal() != null
+            && direccion.getColonia() != null
+            && direccion.getId_municipio() != null
+            && direccion.getNumero() != null;
 
-        boolean camposComunesVacios
-                = (direccion.getCalle().isEmpty() || direccion.getCalle() == null)
-                && (direccion.getCodigo_postal().isEmpty() || direccion.getCodigo_postal() == null)
-                && (direccion.getColonia().isEmpty() || direccion.getColonia() == null)
-                && direccion.getId_municipio() == null
-                && direccion.getNumero() == null;
-
-        if (direccion.getTipo_direccion() != null && direccion.getTipo_direccion() > 0) {
-
-            switch (direccion.getTipo_direccion()) {
-                case 1:
-                    return camposComunesVacios && (direccion.getEmpresa_rfc() == null || direccion.getEmpresa_rfc().isEmpty());
-                case 2:
-                    return camposComunesVacios && (direccion.getId_cliente() == null && direccion.getId_cliente() < 0);
-                case 3:
-                    return camposComunesVacios && (direccion.getId_sucursal() == null && direccion.getId_sucursal() < 0);
-                default:
-                    return false;
-            }
-        } else {
-            return false;
-
+    if (direccion.getTipo_direccion() != null && direccion.getTipo_direccion() > 0 && direccion.getTipo_direccion() < 4) {
+        switch (direccion.getTipo_direccion()) {
+            case 1:
+                return camposComunesLlenos && direccion.getEmpresa_rfc() != null
+                        && (direccion.getId_cliente() == null && direccion.getId_sucursal() == null);
+            case 2:
+                return camposComunesLlenos && direccion.getId_cliente() != null
+                        && (direccion.getEmpresa_rfc() == null && direccion.getId_sucursal() == null);
+            case 3:
+                return camposComunesLlenos && direccion.getId_sucursal() != null
+                        && (direccion.getId_cliente() == null && direccion.getEmpresa_rfc() == null);
+            default:
+                return false;
         }
+    } else {
+        return false;
     }
+}
+
+
 }

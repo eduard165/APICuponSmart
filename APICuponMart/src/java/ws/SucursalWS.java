@@ -9,6 +9,7 @@ import com.google.gson.Gson;
 import java.util.List;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.FormParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -53,11 +54,11 @@ public class SucursalWS {
     }
 
     @DELETE
-    @Path("eliminar/{idSucursal}")
+    @Path("eliminar")
     @Produces(MediaType.APPLICATION_JSON)
-    public Mensaje eliminarSucursal(@PathParam("idSucursal") int idSucursal) {
-        if (idSucursal > 0) {
-            return SucursalDAO.eliminarSucursal(idSucursal);
+    public Mensaje eliminarSucursal(@FormParam("id_sucursal") int id_sucursal) {
+        if (id_sucursal > 0) {
+            return SucursalDAO.eliminarSucursal(id_sucursal);
         } else {
             return new Mensaje(true, "El id esta vacio");
         }
@@ -82,10 +83,10 @@ public class SucursalWS {
         return SucursalDAO.buscarSucursales(parametro);
     }
     @GET
-    @Path("cargarSucursales")
+    @Path("cargarSucursales/{rfc}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Sucursal> cargarSucursales() {
+    public List<Sucursal> cargarSucursales(@PathParam("rfc") String rfc) {
        
-        return SucursalDAO.cargarSucursales();
+        return SucursalDAO.cargarSucursales(rfc);
     }
 }

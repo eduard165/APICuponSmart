@@ -30,7 +30,8 @@ public class DireccionWS {
     public Mensaje agregarDomicilio(String json) {
         Gson gson = new Gson();
         Direccion direccion = gson.fromJson(json, Direccion.class);
-        if (Validaciones.validarDireccion(direccion)) {
+        System.out.println(Validaciones.validarTipoDireccion(direccion));
+        if (!Validaciones.validarTipoDireccion(direccion)) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
         return DireccionDAO.agregarDomicilio(direccion);
@@ -42,8 +43,9 @@ public class DireccionWS {
     @Consumes(MediaType.APPLICATION_JSON)
     public Mensaje editarDireccion(String json) {
         Gson gson = new Gson();
-        Direccion direccion = gson.fromJson(json, Direccion.class);
-        if (Validaciones.validarDireccion(direccion)) {
+        Direccion direccion = new Direccion();
+        direccion = gson.fromJson(json, Direccion.class);
+        if (!Validaciones.validarTipoDireccion(direccion)) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
         return DireccionDAO.editarDomicilio(direccion);
@@ -52,7 +54,7 @@ public class DireccionWS {
     @Path("buscar/empresa/{empresaRFC}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Direccion buscarDireccionEmpresa(@PathParam("parametro") String empresaRFC) {
+    public Direccion buscarDireccionEmpresa(@PathParam("empresaRFC") String empresaRFC) {
         if (empresaRFC == null || empresaRFC.trim().isEmpty()) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
@@ -69,14 +71,14 @@ public class DireccionWS {
         return DireccionDAO.obtenerDomicilioCliente(idCliente);
     }
 
-    @Path("buscar/sucursal/idSucursal}")
+    @Path("buscar/sucursal/{id_sucursal}")
     @GET
     @Produces(MediaType.APPLICATION_JSON)
-    public Direccion buscarEmpresa(@PathParam("parametro") Integer idSucursal) {
-        if (idSucursal == null || idSucursal <= 0) {
+    public Direccion buscardireccionSucursal(@PathParam("id_sucursal") Integer id_sucursal) {
+        if (id_sucursal == null || id_sucursal <= 0) {
             throw new WebApplicationException(Response.Status.BAD_REQUEST);
         }
-        return DireccionDAO.obtenerDomicilioSucursal(idSucursal);
+        return DireccionDAO.obtenerDomicilioSucursal(id_sucursal);
     }
 
     @Path("eliminar/empresa/{empresaRFC}")
@@ -125,4 +127,5 @@ public class DireccionWS {
     public List<Municipio> buscarEmpresa(@PathParam("idEstado") int idEstado) {
         return DireccionDAO.obtenerMunicipios(idEstado);
     }
+
 }

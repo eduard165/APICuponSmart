@@ -10,12 +10,13 @@ public class Sucursal {
     private Double longitud;
     private String nombre_encargado;
     private String empresa_rfc;
+    private String nombre_empresa;
 
 
     public Sucursal() {
     }
 
-    public Sucursal(Integer id_sucursal, String nombre, String telefono, Double latitud, Double longitud, String nombre_encargado, String empresa_rfc) {
+    public Sucursal(Integer id_sucursal, String nombre, String telefono, Double latitud, Double longitud, String nombre_encargado, String empresa_rfc, String nombre_empresa) {
         this.id_sucursal = id_sucursal;
         this.nombre = nombre;
         this.telefono = telefono;
@@ -23,7 +24,9 @@ public class Sucursal {
         this.longitud = longitud;
         this.nombre_encargado = nombre_encargado;
         this.empresa_rfc = empresa_rfc;
+        this.nombre_empresa = nombre_empresa;
     }
+
 
     public Integer getId_sucursal() {
         return id_sucursal;
@@ -79,6 +82,14 @@ public class Sucursal {
 
     public void setEmpresa_rfc(String empresa_rfc) {
         this.empresa_rfc = empresa_rfc;
+    }
+
+    public String getNombre_empresa() {
+        return nombre_empresa;
+    }
+
+    public void setNombre_empresa(String nombre_empresa) {
+        this.nombre_empresa = nombre_empresa;
     }
     
 }

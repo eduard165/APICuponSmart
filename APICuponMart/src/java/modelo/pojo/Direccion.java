@@ -13,11 +13,13 @@ public class Direccion {
     private Integer id_sucursal;
     private String empresa_rfc;
     private Integer tipo_direccion;
+    private String nombre_estado;
+    private String nombre_municipio;
 
     public Direccion() {
     }
 
-    public Direccion(Integer id_direccion, String calle, Integer numero, String codigo_postal, String colonia, Integer id_municipio, Integer id_estado, Integer id_cliente, Integer id_sucursal, String empresa_rfc, Integer tipo_direccion) {
+    public Direccion(Integer id_direccion, String calle, Integer numero, String codigo_postal, String colonia, Integer id_municipio, Integer id_estado, Integer id_cliente, Integer id_sucursal, String empresa_rfc, Integer tipo_direccion, String nombre_estado, String nombre_municipio) {
         this.id_direccion = id_direccion;
         this.calle = calle;
         this.numero = numero;
@@ -29,6 +31,8 @@ public class Direccion {
         this.id_sucursal = id_sucursal;
         this.empresa_rfc = empresa_rfc;
         this.tipo_direccion = tipo_direccion;
+        this.nombre_estado = nombre_estado;
+        this.nombre_municipio = nombre_municipio;
     }
 
 
@@ -119,6 +123,27 @@ public class Direccion {
 
     public void setId_estado(Integer id_estado) {
         this.id_estado = id_estado;
+    }
+
+    public String getNombre_estado() {
+        return nombre_estado;
+    }
+
+    public void setNombre_estado(String nombre_estado) {
+        this.nombre_estado = nombre_estado;
+    }
+
+    public String getNombre_municipio() {
+        return nombre_municipio;
+    }
+
+    public void setNombre_municipio(String nombre_municipio) {
+        this.nombre_municipio = nombre_municipio;
+    }
+
+    @Override
+    public String toString() {
+        return "Direccion{" + "id_direccion=" + id_direccion + ", calle=" + calle + ", numero=" + numero + ", codigo_postal=" + codigo_postal + ", colonia=" + colonia + ", id_municipio=" + id_municipio + ", id_estado=" + id_estado + ", id_cliente=" + id_cliente + ", id_sucursal=" + id_sucursal + ", empresa_rfc=" + empresa_rfc + ", tipo_direccion=" + tipo_direccion + ", nombre_estado=" + nombre_estado + ", nombre_municipio=" + nombre_municipio + '}';
     }
     
 }

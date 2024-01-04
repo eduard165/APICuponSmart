@@ -8,7 +8,6 @@ import modelo.pojo.Mensaje;
 import modelo.pojo.Municipio;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
-import utilidades.Validaciones;
 
 public class DireccionDAO {
 
@@ -202,12 +201,12 @@ public class DireccionDAO {
         return msj;
     }
 
-    public static Direccion obtenerDomicilioEmpresa(String empresaRFC) {
+    public static Direccion obtenerDomicilioEmpresa(String empresa_rfc) {
         Direccion direccion = new Direccion();
         SqlSession sqlSession = MyBatisUtil.getSession();
         if (sqlSession != null) {
             try {
-                direccion = sqlSession.selectOne("domicilio.obtenerDireccionPorEmpresa", empresaRFC);
+                direccion = sqlSession.selectOne("direccion.obtenerDireccionEmpresa", empresa_rfc);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -222,7 +221,7 @@ public class DireccionDAO {
         SqlSession sqlSession = MyBatisUtil.getSession();
         if (sqlSession != null) {
             try {
-                direccion = sqlSession.selectOne("domicilio.obtenerDireccionPorCliente", idCliente);
+                direccion = sqlSession.selectOne("direccion.obtenerDireccionPorCliente", idCliente);
             } catch (Exception e) {
                 e.printStackTrace();
             } finally {
@@ -232,21 +231,22 @@ public class DireccionDAO {
         return direccion;
     }
 
-    public static Direccion obtenerDomicilioSucursal(Integer idSucursal) {
-        Direccion direccion = new Direccion();
+   public static Direccion obtenerDomicilioSucursal(Integer id_sucursal) {
+    Direccion direccion = new Direccion();
 
-        SqlSession sqlSession = MyBatisUtil.getSession();
-        if (sqlSession != null) {
-            try {
-                direccion = sqlSession.selectOne("domicilio.obtenerDireccionPorSucursal", idSucursal);
-            } catch (Exception e) {
-                e.printStackTrace();
-            } finally {
-                sqlSession.close();
-            }
+    SqlSession sqlSession = MyBatisUtil.getSession();
+    if (sqlSession != null) {
+        try {
+            direccion = sqlSession.selectOne("direccion.obtenerSucursalDireccion", id_sucursal);
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            sqlSession.close();
         }
-        return direccion;
     }
+    return direccion;
+}
+
 
     public static Mensaje eliminarDireccionCliente(Integer idCliente) {
         Mensaje mensaje = new Mensaje();
