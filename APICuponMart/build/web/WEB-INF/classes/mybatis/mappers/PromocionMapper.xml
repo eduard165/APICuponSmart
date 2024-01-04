@@ -50,11 +50,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE id_categoria = #{id_categoria}
     </select>
     
-  
+    <select id = "obtenerPromocionesDisponibles" parameterType= "int" resultType="modelo.pojo.Promocion">
+        SELECT empresa.nombre AS nombre_empresa, promocion.id_promocion, tipo_promocion.nombre_tipo, promocion.nombre_promocion, promocion.descripcion,
+        promocion.fecha_termino, promocion.id_categoria ,promocion.restricciones, promocion.usos_disponibles
+     FROM promocion
+     INNER JOIN empresa ON promocion.empresa_rfc = empresa.rfc
+     INNER JOIN tipo_promocion ON promocion.id_tipo_promocion = tipo_promocion.id_tipo_promocion
+        FROM promocion
+        WHERE id_estatus = #{id_estatus}
+    </select>
     
     <select id="obtenerPromocionesEmpresa" parameterType = "int" resultType = "modelo.pojo.Promocion">
     SELECT empresa.nombre AS nombre_empresa, promocion.id_promocion, tipo_promocion.nombre_tipo, promocion.nombre_promocion, promocion.descripcion,
-    promocion.fecha_termino, promocion.id_categoria ,promocion.restricciones
+    promocion.fecha_termino, promocion.id_categoria ,promocion.restricciones, promocion.usos_disponibles
     FROM promocion
     INNER JOIN empresa ON promocion.empresa_rfc = empresa.rfc
     INNER JOIN tipo_promocion ON promocion.id_tipo_promocion = tipo_promocion.id_tipo_promocion

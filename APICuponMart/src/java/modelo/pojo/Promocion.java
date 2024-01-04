@@ -28,6 +28,7 @@ public class Promocion {
     private String empresa_rfc;
     private String nombre_empresa;
     private String nombre_tipo;
+    private Integer usos_disponibles;
     private Integer id_categoria;
     private Integer id_estatus;
     
@@ -35,7 +36,9 @@ public class Promocion {
     public Promocion() {
     }
 
-    public Promocion(Integer id_promocion, String nombre_promocion, String descripcion, byte[] imagen, String imagenBase64, String fecha_inicio, String fecha_termino, String restricciones, Integer id_tipo_promocion, BigDecimal porcentaje_descuento, String codigo_promocion, String empresa_rfc, String nombre_empresa, String nombre_tipo, Integer id_categoria, Integer id_estatus) {
+    public Promocion(Integer id_promocion, String nombre_promocion, String descripcion, byte[] imagen, String imagenBase64, String fecha_inicio, 
+            String fecha_termino, String restricciones, Integer id_tipo_promocion, BigDecimal porcentaje_descuento, String codigo_promocion, String empresa_rfc, 
+            String nombre_empresa, String nombre_tipo, Integer usos_disponibles,Integer id_categoria, Integer id_estatus) {
         this.id_promocion = id_promocion;
         this.nombre_promocion = nombre_promocion;
         this.descripcion = descripcion;
@@ -50,6 +53,7 @@ public class Promocion {
         this.empresa_rfc = empresa_rfc;
         this.nombre_empresa = nombre_empresa;
         this.nombre_tipo = nombre_tipo;
+        this.usos_disponibles = usos_disponibles;
         this.id_categoria = id_categoria;
         this.id_estatus = id_estatus;
     }
@@ -182,5 +186,15 @@ public class Promocion {
     public void setNombre_tipo(String nombre_tipo) {
         this.nombre_tipo = nombre_tipo;
     }
+
+    public Integer getUsos_disponibles() {
+        return usos_disponibles;
+    }
+
+    public void setUsos_disponibles(Integer usos_disponibles) {
+        this.usos_disponibles = usos_disponibles;
+    }
+    
+    
     
 }

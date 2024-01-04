@@ -14,10 +14,7 @@ import modelo.pojo.Promocion;
 import mybatis.MyBatisUtil;
 import org.apache.ibatis.session.SqlSession;
 
-/**
- *
- * @author eduar
- */
+
 public class PromocionDAO {
     
     
@@ -179,12 +176,12 @@ public static List<Promocion> buscarPromociones(String parametro) {
         return promocion;
     }
     
-    public static List<Promocion> recuperarPromocionesPorCategoria(Integer id_categoria) {
+    public static List<Promocion> recuperarPromocionesDisponibles(Integer id_estatus) {
         List<Promocion> promociones = new ArrayList<>();
         SqlSession sqlSession = MyBatisUtil.getSession();
         if (sqlSession != null) {
             try {
-                promociones = sqlSession.selectList("promocion.buscarPromocionesPorCategoria",id_categoria);
+                promociones = sqlSession.selectList("promocion.obtenerPromocionesDisponibles",id_estatus);
                 sqlSession.commit();
             } catch (Exception e) {
                 e.printStackTrace();
@@ -194,6 +191,8 @@ public static List<Promocion> buscarPromociones(String parametro) {
         }
         return promociones;
     }
+    
+    
     
     public static List<Promocion> recuperarPromocionesEmpresa(Integer id_categoria) {
         List<Promocion> promociones = new ArrayList<>();

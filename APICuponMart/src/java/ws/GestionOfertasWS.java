@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ws;
 
 import com.google.gson.Gson;
@@ -35,6 +31,17 @@ import utilidades.Validaciones;
  */
 @Path("GestionOfertas")
 public class GestionOfertasWS {
+    
+    
+    @GET
+    @Path("/obtenerPromociones")
+    @Produces(MediaType.APPLICATION_JSON)
+    public List<Promocion> buscarPromocion(@PathParam("parametro") String parametro) {
+        if (parametro == null || parametro.trim().isEmpty()) {
+            throw new WebApplicationException(Response.Status.BAD_REQUEST);
+        }
+        return PromocionDAO.buscarPromociones(parametro);
+    }
 
     @POST
     @Path("/registrarPromocion")
@@ -75,13 +82,11 @@ public class GestionOfertasWS {
     }
 
     @GET
-    @Path("/buscarPromociones/{parametro}")
+    @Path("obtenerPromociones/")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Promocion> buscarPromocion(@PathParam("parametro") String parametro) {
-        if (parametro == null || parametro.trim().isEmpty()) {
-            throw new WebApplicationException(Response.Status.BAD_REQUEST);
-        }
-        return PromocionDAO.buscarPromociones(parametro);
+    public List<Promocion> recuperarPromocionesEmpresa(@PathParam("id_categoria") Integer id_estatus) {
+    
+        return PromocionDAO.recuperarPromocionesDisponibles(id_estatus);
     }
 
     @DELETE
@@ -121,20 +126,14 @@ public class GestionOfertasWS {
         return CategoriaDAO.recuperarCategoriasDisponibles();
     }
 
-    @GET
-    @Path("PromocionesPorCategoria/{id_categoria}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public List<Promocion> recuperarPromocionesPorCategoria(@PathParam("id_categoria") Integer id_categoria) {
+  
     
-        return PromocionDAO.recuperarPromocionesPorCategoria(id_categoria);
-    }
-    
-    
+
     
    @GET
     @Path("PromocionesEmpresa/{id_categoria}")
     @Produces(MediaType.APPLICATION_JSON)
-    public List<Promocion> recuperarPromocionesEmpresa(@PathParam("id_categoria") Integer id_categoria) {
+    public List<Promocion> recuperarPromocionesDeEmpresa(@PathParam("id_categoria") Integer id_categoria) {
     
         return PromocionDAO.recuperarPromocionesEmpresa(id_categoria);
     }
