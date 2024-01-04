@@ -45,26 +45,27 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         WHERE id_sucursal = #{id_sucursal}
     </update>
     <select id="obtenerDireccionPorCliente" resultType="modelo.pojo.Direccion" parameterType="Integer">
-        SELECT d.*, m.id_estado
+        SELECT d.*, e.nombre AS nombre_estado, mu.nombre AS nombre_municipio
         FROM direccion d
-        JOIN municipio m ON d.id_municipio = m.id_municipio
+         INNER JOIN municipio mu ON d.id_municipio = mu.id_municipio
+        INNER JOIN estado e ON mu.id_estado = e.id_estado
         WHERE id_cliente = #{id_cliente}
     </select>
-
-    <select id="obtenerDireccionPorEmpresa" resultType="modelo.pojo.Direccion" parameterType="String">
-        SELECT d.*, m.id_estado
+    <select id="obtenerDireccionEmpresa" resultType="modelo.pojo.Direccion" parameterType="String">
+       SELECT d.*, e.nombre AS nombre_estado, mu.nombre AS nombre_municipio
         FROM direccion d
-        JOIN municipio m ON d.id_municipio = m.id_municipio
+         INNER JOIN municipio mu ON d.id_municipio = mu.id_municipio
+        INNER JOIN estado e ON mu.id_estado = e.id_estado
         WHERE empresa_rfc = #{empresa_rfc}
     </select>
 
-    <select id="obtenerDireccionPorSucursal" resultType="modelo.pojo.Direccion" parameterType="Integer">
-        SELECT d.*, m.id_estado
+    <select id="obtenerSucursalDireccion" resultType="modelo.pojo.Direccion" parameterType="int">
+        SELECT d.*, e.nombre AS nombre_estado, mu.nombre AS nombre_municipio
         FROM direccion d
-        JOIN municipio m ON d.id_municipio = m.id_municipio
-        WHERE id_sucursal = #{id_sucursal}
+         INNER JOIN municipio mu ON d.id_municipio = mu.id_municipio
+        INNER JOIN estado e ON mu.id_estado = e.id_estado
+        WHERE d.id_sucursal = #{id_sucursal}
     </select>
-
     <delete id="eliminarDireccionPorCliente" parameterType="Integer">
         DELETE FROM direccion
         WHERE id_cliente = #{id_cliente}
