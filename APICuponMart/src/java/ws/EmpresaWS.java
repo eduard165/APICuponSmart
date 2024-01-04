@@ -102,6 +102,7 @@ public class EmpresaWS {
         }
         return EmpresaDAO.obtenerLogo(empresaRFC);
     }
+    
     @GET
     @Path("cargarEmpresas")
     @Produces(MediaType.APPLICATION_JSON)
