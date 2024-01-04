@@ -17,9 +17,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     
     <update id="editarUsuarioComercial" parameterType="modelo.pojo.Usuario">
         UPDATE usuario
-        SET nombre = #{nombre},
+        SET 
+        username = #{username},
+        nombre = #{nombre},
         apellido_paterno = #{apellido_paterno},
         apellido_materno = #{apellido_materno},
+        curp = #{curp},
         correo_electronico = #{correo_electronico},
         password = #{password},
         empresa_rfc = #{empresa_rfc}
@@ -28,10 +31,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
     <update id="editarUsuarioGeneral" parameterType="modelo.pojo.Usuario">
         UPDATE usuario
-        SET nombre = #{nombre},
+        SET 
+        username = #{username}, 
+        nombre = #{nombre},
         apellido_paterno = #{apellido_paterno},
         apellido_materno = #{apellido_materno},
         correo_electronico = #{correo_electronico},
+        curp = #{curp},
         password = #{password}
         WHERE id_usuario = #{id_usuario}
     </update>

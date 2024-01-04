@@ -26,13 +26,15 @@ public class UsuarioDAO {
 
         validacionesDuplicados.setError(true);
         validacionesDuplicados = validarDuplicados(usuario.getUsername(), usuario.getCurp());
-
         if (!validacionesDuplicados.isError()) {
             switch (usuario.getId_rol()) {
                 case 1:
+
                     msj = registrarUsuarioGeneral(usuario);
+
                     break;
                 case 2:
+
                     msj = registrarUsuarioComercial(usuario);
                     break;
 
@@ -40,38 +42,32 @@ public class UsuarioDAO {
                     msj.setMensaje("Rol no válido");
                     break;
             }
-            return msj;
         } else {
             return validacionesDuplicados;
         }
+
+        return msj;
+
     }
 
     public static Mensaje editarUsuario(Usuario usuario) {
         Mensaje msj = new Mensaje();
-        Mensaje validacionesDuplicados = new Mensaje();
-
         msj.setError(true);
-        validacionesDuplicados.setError(true);
 
-        validacionesDuplicados = validarDuplicados(usuario.getUsername(), usuario.getCurp());
+        switch (usuario.getId_rol()) {
+            case 1:
+                msj = editarUsuarioGeneral(usuario);
+                break;
+            case 2:
+                msj = editarUsuarioComercial(usuario);
+                break;
 
-        if (!validacionesDuplicados.isError()) {
-            switch (usuario.getId_rol()) {
-                case 1:
-                    msj = editarUsuarioGeneral(usuario);
-                    break;
-                case 2:
-                    msj = editarUsuarioComercial(usuario);
-                    break;
-
-                default:
-                    msj.setMensaje("Rol no válido");
-                    break;
-            }
-            return msj;
-        } else {
-            return validacionesDuplicados;
+            default:
+                msj.setMensaje("Rol no válido");
+                break;
         }
+        return msj;
+
     }
 
     private static Mensaje registrarUsuarioComercial(Usuario usuario) {
@@ -220,8 +216,9 @@ public class UsuarioDAO {
                 usuarios.setError(false);
                 usuarios.setMensaje("Todo salio bien");
             } finally {
-                sqlSession.close();            }
-        }else{
+                sqlSession.close();
+            }
+        } else {
             usuarios.setMensaje("Algo salio mal");
         }
 
