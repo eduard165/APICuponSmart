@@ -30,16 +30,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         OR d.calle LIKE CONCAT('%', #{param}, '%')
         OR d.numero LIKE CONCAT('%', #{param}, '%')
         OR d.colonia LIKE CONCAT('%', #{param}, '%')
+         OR s.empresa_rfc LIKE CONCAT('%', #{param}, '%')
     </select>
     <select id="contarPromocionesAsociadas" resultType="int" parameterType="int">
         SELECT COUNT(*) 
         FROM sucursal_promocion
         WHERE id_sucursal = #{id_sucursal}
     </select>
-    <select id="cargarSucursales" resultType="modelo.pojo.Sucursal" parameterType="String">
+    <select id="cargarSucursales" resultType="modelo.pojo.Sucursal">
         SELECT s.*, e.nombre AS nombre_empresa
         FROM sucursal s
         INNER JOIN empresa e ON s.empresa_rfc = e.rfc 
-        WHERE empresa_rfc = #{empresa_rfc}
+       
     </select>
 </mapper>
