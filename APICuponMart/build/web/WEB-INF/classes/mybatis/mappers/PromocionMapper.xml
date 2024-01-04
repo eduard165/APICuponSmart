@@ -6,7 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="promocion">
     <insert id="agregarPromocion" parameterType="modelo.pojo.Promocion">
         INSERT INTO promocion (nombre_promocion, descripcion, fecha_inicio, fecha_termino, restricciones, id_tipo_promocion, porcentaje_descuento, codigo_promocion, empresa_rfc)
-        VALUES (#{nombre_promocion}, #{descripcion}, #{fecha_inicio}, #{fecha_termino}, #{restricciones}, #{idTipoPromocion}, #{porcentajeDescuento}, #{codigoPromocion}, #{empresaRFC})
+        VALUES (#{nombre_promocion}, #{descripcion}, #{fecha_inicio}, #{fecha_termino}, #{restricciones}, #{id_tipo_promocion}, #{porcentaje_descuento}, #{codigo_promocion}, #{empresa_rfc})
     </insert>
     <update id="editarPromocion" parameterType="modelo.pojo.Promocion">
         UPDATE promocion

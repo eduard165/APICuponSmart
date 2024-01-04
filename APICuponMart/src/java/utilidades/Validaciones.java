@@ -47,7 +47,6 @@ public class Validaciones {
     boolean camposVacios = (cliente.getNombre() == null || cliente.getNombre().isEmpty())
             || (cliente.getApellido_paterno() == null || cliente.getApellido_paterno().isEmpty())
             || (cliente.getApellido_materno() == null || cliente.getApellido_materno().isEmpty())
-            || (cliente.getCorreo_electronico() == null || cliente.getCorreo_electronico().isEmpty())
             || (cliente.getTelefono() == null || cliente.getTelefono().isEmpty())
             || (cliente.getPassword() == null || cliente.getPassword().isEmpty());
 
